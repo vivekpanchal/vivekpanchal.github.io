@@ -4,8 +4,8 @@ layout: home
 # About Me
 
 
-I've several roles, I'm a developer, Technocrat, Product Manager and UI/UX designer at the same time. 
+I've several roles, I'm a developer, Technocrat and UI/UX designer at the same time. 
 
-I have about 2 years of experience as a software developer (Past <a target="_blank" href="https://www.zomato.com">Zomato</a> & <a href="http://www.zscaler.com" target="_blank">Zscaler</a>).
+I have about 6 months  of experience as a Android developer at XperiaTechnologies.
 
-Currently I'm involved in management and development of <a href="https://www.videoder.net" target="_blank">Videoder</a>.
+Currently I'm working as a freelancer if you wanted me to help you out at something contact me.
