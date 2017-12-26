@@ -1,14 +1,4 @@
 - title: watbot
   url: https://github.com/vivekpanchal/watbot
-  image: https://github.com/vivekpanchal/watbot/blob/master/images/watbot.jpg
-  completed: true
-
-- title: Spark Button
-  url: https://github.com/varunest/SparkButton
-  image: https://lh3.googleusercontent.com/TKcsnEiIi0a8T-6juOI4rrAOrmkeKdDjxlEKHG4pgCbjgLUszED9CGozn6894nChipU=w300-rw
-  completed: true
-
-- title: Lazy Music
-  url: https://play.google.com/store/apps/details?id=com.peplet.lazymusic
-  image: https://lh5.ggpht.com/gmJCKKqa57rhhfN7QcP_Q8myoCMPKz1QSbWsskZb8dStg7Z3crdeD4W07qeXlpetjw=w300-rw
+  image: https://raw.githubusercontent.com/vivekpanchal/watbot/master/images/watbot.jpg
   completed: true
