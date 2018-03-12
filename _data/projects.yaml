@@ -12,3 +12,8 @@
   url:  https://github.com/vivekpanchal/Tictactoe
   image: http://moziru.com/images/grid-clipart-tic-tac-toe-9.png
   completed: true
+
+- title: NewsReaderApp
+  url:   https://github.com/vivekpanchal/NewsReaderApp
+  image: https://is5-ssl.mzstatic.com/image/thumb/Purple118/v4/54/21/62/54216232-4b14-b009-6f0f-f46da3cb2a75/pr_source.png/696x696bb.png
+  completed: true
