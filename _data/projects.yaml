@@ -1,6 +1,6 @@
 - title: watbot
-  url: https://github.com/vivekpanchal/watbot
-  image: https://github.com/vivekpanchal/watbot/blob/master/images/watbot.jpg
+  url:  https://github.com/vivekpanchal/watbot
+  image: https://raw.githubusercontent.com/vivekpanchal/watbot/master/images/WatBot_5X.png
   completed: true
 
 - title: brainTrainer
