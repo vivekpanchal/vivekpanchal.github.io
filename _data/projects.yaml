@@ -18,7 +18,7 @@
   image: https://is5-ssl.mzstatic.com/image/thumb/Purple118/v4/54/21/62/54216232-4b14-b009-6f0f-f46da3cb2a75/pr_source.png/696x696bb.png
   completed: true
 
-  - title: NoteApp
-  url:   https://github.com/vivekpanchal/NoteApp
+- title: NoteApp
+  url: https://github.com/vivekpanchal/NoteApp
   image: http://cdn.osxdaily.com/wp-content/uploads/2015/09/notes-icon-ios-610x605.jpg
   completed: true
