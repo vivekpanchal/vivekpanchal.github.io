@@ -1,7 +1,7 @@
 # Site
 title: Vivek Panchal
 description: A Software Craftsman, livin' by code standards
-#url:
+url:"https://vivekpanchal.dev"
 
 logo: logo.png                                       # Site logo
 locale: en_US
