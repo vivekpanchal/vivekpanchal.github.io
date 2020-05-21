@@ -5,7 +5,6 @@ import Skills from "./skills/Skills";
 import Projects from "./projects/Projects";
 import Achievement from "./achievement/Achievement";
 import Blogs from "./blogs/Blogs";
-import Footer from "../components/footer/Footer";
 import Top from "./topbutton/Top";
 import Profile from "./profile/Profile";
 
@@ -20,7 +19,6 @@ export default class Main extends Component {
         <Achievement />
         <Blogs />
         <Profile />
-        <Footer />
         <Top />
       </div>
     );
