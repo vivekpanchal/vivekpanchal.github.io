@@ -1,55 +1,99 @@
-﻿
 /* Change this file to get your personal Portfolio */
 
-// Your Summary And Greeting Section
+// To change portfolio colors globally go to the  _globalColor.scss file
 
 import emoji from "react-easy-emoji";
+import splashAnimation from "./assets/lottie/splashAnimation"; // Rename to your file name for custom animation
+
+// Splash Screen
+
+const splashScreen = {
+  enabled: true, // set false to disable splash screen
+  animation: splashAnimation,
+  duration: 2000 // Set animation duration as per your animation
+};
+
+// Summary And Greeting Section
+
+const illustration = {
+  animated: true // Set to false to use static SVG
+};
 
 const greeting = {
-  /* Your Summary And Greeting Section */
   username: "Vivek Panchal",
-  title: "Hi all, I'm Vivek",
-  subTitle: emoji("A passionate Android  Developer 🚀  having an experience of building  Mobile 📱 applications with Best Practices, and cool libraries."),
-  resumeLink: "https://drive.google.com/open?id=1sK66cnPkKOO43sIhNcpGjAlTf1o0wvKj"
+  title: "Hi , I'm Vivek",
+  subTitle: emoji("A passionate Android Enginer 🚀 having an experience of building Mobile 📱 applications with Best Practices, and Latest libraries and frameworks."),
+  resumeLink:"https://drive.google.com/file/d/1Ss-q74neAq26aLHMe03EpSVFwx324tbB/view?usp=sharing", // Set to empty to hide the button
+  displayGreeting: true // Set false to hide this section, defaults to true
 };
 
 
-// Your Social Media Link
-const socialMediaLinks = {
 
+// Social Media Links
+const socialMediaLinks = {
   github: "https://github.com/vivekpanchal",
   linkedin: "https://www.linkedin.com/in/vivek-panchal-developer/",
   gmail: "vivekpanchal64@gmail.com",
-  facebook: "https://www.facebook.com/vivekpunkster",
-  instagram: "https://www.instagram.com/vivekpanchal64/"
-  // Instagram and Twitter are also supported in the links!
+  facebook: "https://www.facebook.com/vivekpanchal64",
+  medium: "https://medium.com/@vivekpanchal",
+  stackoverflow: "https://stackoverflow.com/users/7685845/vivek-panchal",
+  // Instagram, Twitter and Kaggle are also supported in the links!
+  // To customize icons and social links, tweak src/components/SocialMedia
+  display: true // Set true to display this section, defaults to false
 };
 
-// Your Skills Section
 
+
+// Skills Section
 const skillsSection = {
-  title: "What i do",
-  subTitle: "CRAZY ANDROID DEVELOPER WHO WANTS TO Build AWESOME APPS",
+  title: "What I do",
+  subTitle: "EXPERIENCED ANDROID DEVELOPER WHO LOVES TO BUILD ROBUST AND SCALABLE APPS",
   skills: [
-    emoji("⚡ Develop beautiful  User Interfaces for your mobile applications"),
-    emoji("⚡ Building Apps with Best Practices and Architecture like MVVM,MVP "),
-    emoji("⚡ Knowledge of Rx java, Dagger 2,Retrofit,Glide,Okhttp.. etc"),
-    emoji("⚡ Integration of third party services such as Firebase/ AWS ")
+    emoji(
+      "⚡ Develop highly interactive User Interfaces for your Android applications"
+    ),
+    emoji("⚡ Expert in Java and Kotlin for Android development"),
+    emoji(
+      "⚡ Proficient in using Android Studio, Firebase, and other essential tools"
+    ),
+    emoji(
+      "⚡ Experience with MVVM, LiveData, Room, and other Android Architecture Components"
+    ),
+    emoji(
+      "⚡ Integration of third party services such as Google APIs, AWS, etc."
+    ),
+    emoji(
+      "⚡ Strong understanding of Material Design principles and guidelines"
+    )
   ],
 
-/* Make Sure You include correct Font Awesome Classname to view your icon
-https://fontawesome.com/icons?d=gallery */
-
+  /* Make Sure to include correct Font Awesome Classname to view your icon
+  https://fontawesome.com/icons?d=gallery */
   softwareSkills: [
     {
-      skillName: "Java",
+      skillName: "java",
       fontAwesomeClassname: "fab fa-java"
     },
     {
-      skillName: "Android",
+      skillName: "kotlin",
+      fontAwesomeClassname: "fas fa-code"
+    },
+    {
+      skillName: "android",
       fontAwesomeClassname: "fab fa-android"
     },
-  
+    {
+      skillName: "gradle",
+      fontAwesomeClassname: "fas fa-cogs"
+    },
+    {
+      skillName: "firebase",
+      fontAwesomeClassname: "fas fa-fire"
+    },
+    {
+      skillName: "google-cloud",
+      fontAwesomeClassname: "fab fa-google"
+    },
     {
       skillName: "sql-database",
       fontAwesomeClassname: "fas fa-database"
@@ -57,10 +101,89 @@ https://fontawesome.com/icons?d=gallery */
     {
       skillName: "aws",
       fontAwesomeClassname: "fab fa-aws"
+    }
+  ],
+  display: true // Set false to hide this section, defaults to true
+};
+
+const techStack = {
+  viewSkillBars: true, //Set it to true to show Proficiency Section
+  experience: [
+    {
+      Stack: "Android Development", //Insert stack or technology you have experience in
+      progressPercentage: "99%" //Insert relative proficiency in percentage
     },
     {
-      skillName: "firebase",
-      fontAwesomeClassname: "fas fa-fire"
+      Stack: "Java",
+      progressPercentage: "95%"
+    },
+    {
+      Stack: "Kotlin",
+      progressPercentage: "90%"
+    }
+  ],
+  displayCodersrank: false 
+};
+
+
+
+
+// Education Section
+const educationInfo = {
+  display: true, // Set false to hide this section, defaults to true
+  schools: [
+    {
+      schoolName: "Udacity",
+      logo: require("./assets/images/udacity-logo.png"),
+      subHeader: "Andorid Developer Nanodegree",
+      duration: "September 2017 - April 2019",
+      desc: "Participated in Google Udacity scholarship program and won a full scholarship for Android Developer Nanodegree",
+      descBullets: [
+        "Took part in Google Scholoarship challenges and won a full scholarship for Android Developer Nanodegree",
+        "Over 500 students were selected from 10000+ students to win a full scholarship for Android Developer Nanodegree "
+      ]
+    },
+    {
+      schoolName: "Maharishi Dyanand University",
+      logo: require("./assets/images/mdu_logo.png"),
+      subHeader: "Bachelor of Science in Computer Science",
+      duration: "September 2014 - May 2017",
+      desc: "Ranked top 10% in the program. Took courses about Software Engineering, Web Security, Operating Systems, ...",
+      // descBullets: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit"]
+    }
+  ]
+};
+
+
+// Work experience section
+
+const workExperiences = {
+  display: false, //Set it to true to show workExperiences Section
+  experience: [
+    {
+      role: "Software Engineer",
+      company: "Facebook",
+      companylogo: require("./assets/images/facebookLogo.png"),
+      date: "June 2018 – Present",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      descBullets: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      ]
+    },
+    {
+      role: "Front-End Developer",
+      company: "Quora",
+      companylogo: require("./assets/images/quoraLogo.png"),
+      date: "May 2017 – May 2018",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    },
+    {
+      role: "Software Engineer Intern",
+      company: "Airbnb",
+      companylogo: require("./assets/images/airbnbLogo.png"),
+      date: "Jan 2015 – Sep 2015",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   ]
 };
@@ -69,57 +192,98 @@ https://fontawesome.com/icons?d=gallery */
 To know how to get github key look at readme.md */
 
 const openSource = {
-  githubConvertedToken: "NzE1NGRkZWJlNGU5NzBiNjM0NGZlMjY0ODM4OGMyNGNkZDE3Yjc5ZA",
-  githubUserName: "vivekpanchal",
-  showGithubProfile :"true" // Set true or false to show Contact profile using Github, defaults to false 
+  showGithubProfile: "true", // Set true or false to show Contact profile using Github, defaults to true
+  display: true // Set false to hide this section, defaults to true
 };
 
+// Some big projects you have worked on
 
+const bigProjects = {
+  title: "Big Projects",
+  subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH",
+  projects: [
+    {
+      image: require("./assets/images/studyiq.88958bfe.webp"),
+      projectName: "StudyIQ",
+      projectDesc: "India's leading EdTech Application provide online education to students with over 1million users base on playstore.",
+      footerLink: [
+        {
+          name: "Visit App",
+          url: "https://play.google.com/store/apps/details?id=com.studyiq.android&hl=en&gl=US&pli=1"
+        }
+        //  you can add extra buttons here.
+      ]
+    }
+    // {
+    //   image: require("./assets/images/nextuLogo.webp"),
+    //   projectName: "TestIQ",
+    //   projectDesc: "Provide online Quiz to students to test thier knowledge and help them to prepare for competitive exams.",
+    //   footerLink: [
+    //     {
+    //       name: "Visit App",
+    //       url: "http://nextu.se/"
+    //     }
+    //   ]
+    // }
+  ],
+  display: true // Set false to hide this section, defaults to true
+};
 
-// Your Achievement Section Include Your Certification Talks and More
+// Achievement Section
+// Include certificates, talks etc
 
 const achievementSection = {
-
   title: emoji("Achievements And Certifications 🏆 "),
-  subtitle: "Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
+  subtitle:"Achievements, Certifications, Award Letters and Some Cool Stuff that I have done !",
 
-  achivementsCards: [
+  achievementsCards: [
     {
       title: "Google Certified Android Developer",
       subtitle: "Google Certified Android Developer",
-      image:
-        "https://appgambit.com/images/badges/11.png",
+      image: require("./assets/images/android_certificate.png"),
+      imageAlt: "Google Certificate Logo",
       footerLink: [
-        { name: "Certification", url: "https://www.credential.net/6b2e9cbd-87cc-4da0-a9dd-d2972e91a1c6?key=32809462c83d9a2519f3a3fed015f4f147f6a9bb121f6c53b8a58dd0ea54fdb5" },
+        { 
+          name: "Certification",
+         url: "https://www.credential.net/6b2e9cbd-87cc-4da0-a9dd-d2972e91a1c6?key=32809462c83d9a2519f3a3fed015f4f147f6a9bb121f6c53b8a58dd0ea54fdb5" },
        
       ]
     },
     {
       title: "Google Assistant Action",
       subtitle: "Developed a Google Assistant Action on Dragon Ballz  that is available on 2 Billion devices world wide with 4.8 rating.",
-      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Google_Assistant_logo.svg/1200px-Google_Assistant_logo.svg.png",
-      footerLink: [{ name: "View Google Assistant Action", url: "https://assistant.google.com/services/a/uid/00000039ba88947e?hl=en-US&source=web" }]
+      image: require("./assets/images/googleAssistantLogo.webp"),
+      imageAlt: "Google Assistant Action Logo",
+      footerLink: [
+        {
+          name: "View Google Assistant Action",
+          url: "https://assistant.google.com/services/a/uid/000000100ee688ee?hl=en"
+        }
+      ]
     },
 
     {
       title: "Udacity Android NanoDegree Holder",
       subtitle: "Completed Certifcation For Android Developer NanoDegree From Udacity",
       image: "https://s3-us-west-2.amazonaws.com/udacity-printer/production/certificates/247c6599-6d95-44bd-abea-ab392ccc7819.svg",
+
+      // image: require("./assets/images/pwaLogo.webp"),
+      imageAlt: "Udacity Logo",
       footerLink: [
         { name: "Certification", url: "https://confirm.udacity.com/ZRLEVLYW" },
         { name: "Final Project", url: "https://github.com/vivekpanchal/NewsHUB" }
       ]
     }
-  ]
+  ],
+  display: true // Set false to hide this section, defaults to true
 };
 
 // Blogs Section
 
 const blogSection = {
-
   title: "Blogs",
   subtitle: "With Love for Developing cool stuff, I love to write and teach others what I have learnt.",
-
+  displayMediumBlogs: "true", 
   blogs: [
     {
       url: "https://www.androidresource.com/kotlin-for-beginners-part-3-exception-handling-and-null-safety/",
@@ -131,14 +295,72 @@ const blogSection = {
       title: "My journey how i became and Android developer",
       description: "My journey on How did i won the google udacity android NanoDegree "
     }
-  ]
+  ],
+  display: true // Set false to hide this section, defaults to true
+};
+
+// Talks Sections
+const talkSection = {
+  title: "TALKS",
+  subtitle: emoji(
+    "I LOVE TO SHARE MY LIMITED KNOWLEDGE AND GET A SPEAKER BADGE 😅"
+  ),
+  talks: [
+    {
+      title: "Build Actions For Google Assistant",
+      subtitle: "Codelab at GDG DevFest Karachi 2019",
+      slides_url: "https://bit.ly/saadpasta-slides",
+      event_url: "https://www.facebook.com/events/2339906106275053/"
+    }
+  ],
+  display: false 
+};
+
+// Podcast Section
+const podcastSection = {
+  title: emoji("Podcast 🎙️"),
+  subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
+
+  // Please Provide with Your Podcast embeded Link
+  podcast: [
+    "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
+  ],
+  display: false // Set false to hide this section, defaults to true
 };
 
 const contactInfo = {
-  title: emoji("Contact Me ☎️"),
-  subtitle: "Discuss a project or just want to say hi? My Inbox is open for all.",
+  title: emoji("Reach Out to me! ☎️"),
+  subtitle: "Got an exciting project in mind or simply want to chat? I'd love to hear from you! My inbox is always open.",
   number: "+919968864537",
   email_address: "vivekpanchal64@gmail.com"
 };
 
-export { greeting, socialMediaLinks, skillsSection, openSource, achievementSection, blogSection, contactInfo};
+
+// Twitter Section
+
+const twitterDetails = {
+  userName: "twitter", //Replace "twitter" with your twitter username without @
+  display: false // Set true to display this section, defaults to false
+};
+
+const isHireable = true; // Set false if you are not looking for a job. Also isHireable will be display as Open for opportunities: Yes/No in the GitHub footer
+
+export {
+  illustration,
+  greeting,
+  socialMediaLinks,
+  splashScreen,
+  skillsSection,
+  educationInfo,
+  techStack,
+  workExperiences,
+  openSource,
+  bigProjects,
+  achievementSection,
+  blogSection,
+  talkSection,
+  podcastSection,
+  contactInfo,
+  twitterDetails,
+  isHireable
+};

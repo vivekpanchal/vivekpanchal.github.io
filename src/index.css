@@ -1,13 +1,15 @@
 @font-face {
-  font-family: 'Agustina Regular';
+  font-family: "Agustina Regular";
   font-style: normal;
   font-weight: normal;
-  src: local('Agustina Regular'), url('./assests/fonts/Agustina.woff') format('woff');
+  src: local("Agustina Regular"),
+    url("./assets/fonts/Agustina.woff") format("woff");
   font-display: swap;
 }
 @font-face {
-  font-family: 'Montserrat';
-  src: local('Montserrat'), url('./assests/fonts/Montserrat-Regular.ttf') format('woff');
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("./assets/fonts/Montserrat-Regular.ttf") format("woff");
   font-display: swap;
 }
 code {
@@ -28,7 +30,7 @@ body {
 @media (max-width: 1380px) {
   html,
   body {
-    font-size: 16px;
+    font-size: rem;
     line-height: normal;
   }
 }
