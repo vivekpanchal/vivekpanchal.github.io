@@ -22,8 +22,8 @@ const illustration = {
 const greeting = {
   username: "Vivek Panchal",
   title: "Hi , I'm Vivek",
-  subTitle: emoji("A passionate Android Enginer 🚀 having an experience of building Mobile 📱 applications with Best Practices, and Latest libraries and frameworks."),
-  resumeLink:"https://drive.google.com/file/d/1Ss-q74neAq26aLHMe03EpSVFwx324tbB/view?usp=sharing", // Set to empty to hide the button
+  subTitle: emoji("Android Engineer with 6+ years of experience building high-quality, scalable mobile apps using modern architecture, Jetpack libraries, and Kotlin. Passionate about clean code, performance optimization, and delivering seamless user experiences."),
+  resumeLink:"https://drive.google.com/file/d/17LQoYXXLugjJDkCNfvDnsPeM1u6wpZUT/view?usp=sharing", // Set to empty to hide the button
   displayGreeting: true // Set false to hide this section, defaults to true
 };
 
@@ -49,58 +49,40 @@ const skillsSection = {
   title: "What I do",
   subTitle: "EXPERIENCED ANDROID DEVELOPER WHO LOVES TO BUILD ROBUST AND SCALABLE APPS",
   skills: [
-    emoji(
-      "⚡ Develop highly interactive User Interfaces for your Android applications"
-    ),
-    emoji("⚡ Expert in Java and Kotlin for Android development"),
-    emoji(
-      "⚡ Proficient in using Android Studio, Firebase, and other essential tools"
-    ),
-    emoji(
-      "⚡ Experience with MVVM, LiveData, Room, and other Android Architecture Components"
-    ),
-    emoji(
-      "⚡ Integration of third party services such as Google APIs, AWS, etc."
-    ),
-    emoji(
-      "⚡ Strong understanding of Material Design principles and guidelines"
-    )
+    emoji("⚡ Expert in Clean Architecture, MVVM, MVI, and Repository pattern implementation"),
+    emoji("⚡ Deep understanding of Android Jetpack components (ViewModel, LiveData, Room, Navigation, WorkManager)"),
+    emoji("⚡ Proficient in Kotlin Coroutines and Flow for asynchronous programming"),
+    emoji("⚡ Experience with Dependency Injection (Dagger Hilt, Koin)"),
+    emoji("⚡ Strong knowledge of Android performance optimization and memory management"),
+    emoji("⚡ Expertise in implementing CI/CD pipelines for Android apps")
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
   https://fontawesome.com/icons?d=gallery */
   softwareSkills: [
     {
-      skillName: "java",
-      fontAwesomeClassname: "fab fa-java"
-    },
-    {
-      skillName: "kotlin",
-      fontAwesomeClassname: "fas fa-code"
-    },
-    {
-      skillName: "android",
+      skillName: "android-jetpack",
       fontAwesomeClassname: "fab fa-android"
     },
     {
-      skillName: "gradle",
-      fontAwesomeClassname: "fas fa-cogs"
+      skillName: "kotlin",
+      fontAwesomeClassname: "fab fa-kotlin"
     },
     {
-      skillName: "firebase",
-      fontAwesomeClassname: "fas fa-fire"
+      skillName: "dagger-hilt",
+      fontAwesomeClassname: "fas fa-syringe"
     },
     {
-      skillName: "google-cloud",
-      fontAwesomeClassname: "fab fa-google"
+      skillName: "compose",
+      fontAwesomeClassname: "fas fa-paint-brush"
     },
     {
-      skillName: "sql-database",
-      fontAwesomeClassname: "fas fa-database"
+      skillName: "coroutines",
+      fontAwesomeClassname: "fas fa-sync"
     },
     {
-      skillName: "aws",
-      fontAwesomeClassname: "fab fa-aws"
+      skillName: "testing",
+      fontAwesomeClassname: "fas fa-vial"
     }
   ],
   display: true // Set false to hide this section, defaults to true
@@ -205,7 +187,20 @@ const bigProjects = {
     {
       image: require("./assets/images/studyiq.88958bfe.webp"),
       projectName: "StudyIQ",
-      projectDesc: "India's leading EdTech Application provide online education to students with over 1million users base on playstore.",
+      projectDesc: "India's leading EdTech Application with over 1M+ users",
+      technicalStack: [
+        "Clean Architecture with MVVM",
+        "Kotlin Coroutines for async operations",
+        "Room Database for local storage",
+        "Dagger Hilt for dependency injection",
+        "Jetpack Compose for modern UI",
+        "Firebase Analytics and Crashlytics"
+      ],
+      achievements: [
+        "Reduced app launch time by 30%",
+        "Achieved 99.9% crash-free sessions",
+        "Implemented efficient offline-first architecture"
+      ],
       footerLink: [
         {
           name: "Visit App",
@@ -239,11 +234,10 @@ const achievementSection = {
   achievementsCards: [
     {
       title: "Google Certified Android Developer",
-      subtitle: "Google Certified Android Developer",
+      subtitle: "Advanced Android Development Certification",
       image: require("./assets/images/android_certificate.png"),
-      imageAlt: "Google Certificate Logo",
       footerLink: [
-        { 
+        {
           name: "Certification",
          url: "https://www.credential.net/6b2e9cbd-87cc-4da0-a9dd-d2972e91a1c6?key=32809462c83d9a2519f3a3fed015f4f147f6a9bb121f6c53b8a58dd0ea54fdb5" },
        
