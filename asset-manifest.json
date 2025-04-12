@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.3cf13eba.css",
-    "main.js": "/static/js/main.b6e71c05.js",
-    "static/css/64.bba8fa55.chunk.css": "/static/css/64.bba8fa55.chunk.css",
-    "static/js/64.a4ba87c1.chunk.js": "/static/js/64.a4ba87c1.chunk.js",
-    "static/css/769.b3cbb36b.chunk.css": "/static/css/769.b3cbb36b.chunk.css",
-    "static/js/769.c6176996.chunk.js": "/static/js/769.c6176996.chunk.js",
+    "main.css": "/static/css/main.93690824.css",
+    "main.js": "/static/js/main.88d975b4.js",
+    "static/css/487.bb36206c.chunk.css": "/static/css/487.bb36206c.chunk.css",
+    "static/js/487.1bc37a45.chunk.js": "/static/js/487.1bc37a45.chunk.js",
+    "static/css/990.c6a7ee28.chunk.css": "/static/css/990.c6a7ee28.chunk.css",
+    "static/js/990.16c18f3f.chunk.js": "/static/js/990.16c18f3f.chunk.js",
     "static/media/android_certificate.png": "/static/media/android_certificate.b25f165f71a654ace074.png",
     "static/media/Montserrat-Regular.ttf": "/static/media/Montserrat-Regular.3cd786652b8a2e9d41f2.ttf",
     "static/media/mdu_logo.png": "/static/media/mdu_logo.0094813864f2578fca65.png",
@@ -22,15 +22,15 @@
     "static/media/studyiq.88958bfe.webp": "/static/media/studyiq.88958bfe.759a7a4b48e29ba99737.webp",
     "index.html": "/index.html",
     "static/media/talksCardBack.svg": "/static/media/talksCardBack.73ed1545d58273ba64b0.svg",
-    "main.3cf13eba.css.map": "/static/css/main.3cf13eba.css.map",
-    "main.b6e71c05.js.map": "/static/js/main.b6e71c05.js.map",
-    "64.bba8fa55.chunk.css.map": "/static/css/64.bba8fa55.chunk.css.map",
-    "64.a4ba87c1.chunk.js.map": "/static/js/64.a4ba87c1.chunk.js.map",
-    "769.b3cbb36b.chunk.css.map": "/static/css/769.b3cbb36b.chunk.css.map",
-    "769.c6176996.chunk.js.map": "/static/js/769.c6176996.chunk.js.map"
+    "main.93690824.css.map": "/static/css/main.93690824.css.map",
+    "main.88d975b4.js.map": "/static/js/main.88d975b4.js.map",
+    "487.bb36206c.chunk.css.map": "/static/css/487.bb36206c.chunk.css.map",
+    "487.1bc37a45.chunk.js.map": "/static/js/487.1bc37a45.chunk.js.map",
+    "990.c6a7ee28.chunk.css.map": "/static/css/990.c6a7ee28.chunk.css.map",
+    "990.16c18f3f.chunk.js.map": "/static/js/990.16c18f3f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3cf13eba.css",
-    "static/js/main.b6e71c05.js"
+    "static/css/main.93690824.css",
+    "static/js/main.88d975b4.js"
   ]
 }
