@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<section class="blogs-preview section" id="blogs">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">From the Blog</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Writing about Android, architecture, and developer journeys</p>
+    </header>
+
+    <div class="posts-grid">
+      {posts.map(post => (
+        <article class="post-card card">
+          <div class="post-tags">
+            {post.data.tags.slice(0, 2).map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+          <h3 class="post-title">
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </h3>
+          <p class="post-desc">{post.data.description}</p>
+          <footer class="post-footer">
+            <time datetime={post.data.pubDate.toISOString()} class="post-date">
+              <i class="far fa-calendar-alt" aria-hidden="true"></i>
+              {formatDate(post.data.pubDate)}
+            </time>
+            <a href={`/blog/${post.slug}`} class="read-more">
+              Read more <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div class="blogs-cta">
+      <a href="/blog" class="btn btn-outline">
+        <i class="fas fa-pen-nib" aria-hidden="true"></i> View All Posts
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .post-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .post-title a {
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .post-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .post-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .post-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: gap var(--transition);
+    white-space: nowrap;
+  }
+
+  .read-more:hover {
+    gap: 0.6rem;
+    color: var(--color-primary);
+  }
+
+  .blogs-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+</style>

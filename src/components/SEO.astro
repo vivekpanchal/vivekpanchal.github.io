@@ -1,0 +1,99 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: 'website' | 'article';
+  publishedDate?: string;
+  tags?: string[];
+}
+
+const {
+  title = 'Vivek Panchal — Android Developer',
+  description = 'SDE-2 at Trust. Android developer specializing in Java & Kotlin. Building great mobile experiences with MVVM, Dagger2, RxJava. Based in New Delhi, India.',
+  image = '/og-image.png',
+  url = Astro.url.href,
+  type = 'website',
+  publishedDate,
+  tags = [],
+} = Astro.props;
+
+const siteName = 'Vivek Panchal';
+const twitterHandle = '@vivekpanchal';
+const canonicalUrl = url;
+---
+
+<!-- Primary Meta -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content={description} />
+<meta name="author" content="Vivek Panchal" />
+<meta name="keywords" content={[
+  'Vivek Panchal', 'Android Developer', 'SDE', 'Java', 'Kotlin',
+  'MVVM', 'Dagger2', 'RxJava', 'New Delhi', 'India', 'Software Engineer',
+  ...tags
+].join(', ')} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#6c63ff" />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={new URL(image, Astro.site)} />
+<meta property="og:image:alt" content={title} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+{publishedDate && <meta property="article:published_time" content={publishedDate} />}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={twitterHandle} />
+<meta name="twitter:creator" content={twitterHandle} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(type === 'article' ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Person",
+    "name": "Vivek Panchal",
+    "url": "https://vivekpanchal.dev"
+  },
+  "datePublished": publishedDate,
+  "image": new URL(image, Astro.site),
+  "url": canonicalUrl,
+} : {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Vivek Panchal",
+  "url": "https://vivekpanchal.dev",
+  "sameAs": [
+    "https://github.com/vivekpanchal",
+    "https://linkedin.com/in/vivekpanchal07",
+    "https://medium.com/@vivekpanchal",
+    "https://twitter.com/vivekpanchal07"
+  ],
+  "jobTitle": "SDE-2",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Trust"
+  },
+  "description": description,
+  "image": new URL(image, Astro.site),
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "New Delhi",
+    "addressCountry": "IN"
+  }
+})} />

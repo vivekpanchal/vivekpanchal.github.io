@@ -1,0 +1,147 @@
+---
+const education = [
+  {
+    degree: 'B.Tech — Computer Science & Engineering',
+    school: 'Maharshi Dayanand University (MDU)',
+    period: '2013 – 2017',
+    location: 'Rohtak, Haryana',
+    description: 'Bachelor of Technology in Computer Science & Engineering. Focused on algorithms, data structures, OS, DBMS, and computer networks. Final year project: AI-powered chatbot using IBM Watson.',
+    icon: 'fas fa-university',
+    color: '#43b89c',
+  },
+  {
+    degree: 'Senior Secondary (XII) — Science',
+    school: 'Delhi Public School',
+    period: '2013',
+    location: 'New Delhi',
+    description: 'Completed senior secondary education with Physics, Chemistry, Mathematics and Computer Science.',
+    icon: 'fas fa-school',
+    color: '#ff6584',
+  },
+];
+---
+
+<section class="education section" id="education">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">Education</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Academic background</p>
+    </header>
+
+    <div class="edu-list">
+      {education.map(edu => (
+        <article class="edu-card card" style={`--edu-color: ${edu.color}`}>
+          <div class="edu-icon">
+            <i class={edu.icon} aria-hidden="true"></i>
+          </div>
+          <div class="edu-body">
+            <div class="edu-header">
+              <div>
+                <h3 class="edu-degree">{edu.degree}</h3>
+                <p class="edu-school">{edu.school}</p>
+              </div>
+              <div class="edu-period">
+                <span><i class="far fa-calendar-alt" aria-hidden="true"></i> {edu.period}</span>
+                <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> {edu.location}</span>
+              </div>
+            </div>
+            <p class="edu-desc">{edu.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    border-left: 4px solid var(--edu-color, var(--color-primary));
+  }
+
+  .edu-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--edu-color, var(--color-primary)) 15%, transparent);
+    color: var(--edu-color, var(--color-primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  .edu-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-degree {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .edu-school {
+    font-size: 0.95rem;
+    color: var(--edu-color, var(--color-primary));
+    font-weight: 600;
+  }
+
+  .edu-period {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: flex-end;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .edu-period span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .edu-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .edu-card {
+      flex-direction: column;
+    }
+
+    .edu-header {
+      flex-direction: column;
+    }
+
+    .edu-period {
+      align-items: flex-start;
+    }
+  }
+</style>

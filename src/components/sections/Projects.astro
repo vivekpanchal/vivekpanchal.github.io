@@ -1,0 +1,219 @@
+---
+const projects = [
+  {
+    name: 'GithubTrending',
+    description: 'GitHub Trending repositories Android app built with MVVM architecture, Dagger2 for dependency injection, and RxJava for reactive programming.',
+    url: 'https://github.com/vivekpanchal/GithubTrending',
+    language: 'Java',
+    langColor: '#b07219',
+    stars: 2,
+    forks: 1,
+    tags: ['MVVM', 'Dagger2', 'RxJava'],
+  },
+  {
+    name: 'MovieMania',
+    description: 'Popular movie browsing app using TheMovieDB API. Displays trending movies, details, ratings, and cast information with a clean Material Design UI.',
+    url: 'https://github.com/vivekpanchal/MovieMania',
+    language: 'Kotlin',
+    langColor: '#A97BFF',
+    stars: 3,
+    forks: 2,
+    tags: ['Kotlin', 'Retrofit', 'MVVM'],
+  },
+  {
+    name: 'watbot',
+    description: 'Voice-enabled Android Chatbot powered by IBM Watson Conversation, Speech-to-Text, and Text-to-Speech services on IBM Bluemix cloud platform.',
+    url: 'https://github.com/vivekpanchal/watbot',
+    language: 'Java',
+    langColor: '#b07219',
+    stars: 2,
+    forks: 0,
+    tags: ['IBM Watson', 'Voice AI', 'Chatbot'],
+  },
+  {
+    name: 'NewsHUB',
+    description: 'News aggregator Android application that fetches latest news from multiple sources, supports offline reading, and provides a clean browsing experience.',
+    url: 'https://github.com/vivekpanchal/NewsHUB',
+    language: 'Java',
+    langColor: '#b07219',
+    stars: 2,
+    forks: 0,
+    tags: ['Retrofit', 'RecyclerView', 'Room'],
+  },
+  {
+    name: 'HackerRankSolutions',
+    description: 'Comprehensive collection of HackerRank Interview Preparation Kit solutions with clean, well-commented Java code covering algorithms and data structures.',
+    url: 'https://github.com/vivekpanchal/HackerRankSolutions',
+    language: 'Java',
+    langColor: '#b07219',
+    stars: 5,
+    forks: 7,
+    tags: ['Algorithms', 'Data Structures', 'Interview Prep'],
+  },
+  {
+    name: 'NewsReaderApp',
+    description: 'News reader application using the free HackerNews API to fetch and display technology news stories with a minimal, distraction-free interface.',
+    url: 'https://github.com/vivekpanchal/NewsReaderApp',
+    language: 'Java',
+    langColor: '#b07219',
+    stars: 1,
+    forks: 0,
+    tags: ['HackerNews API', 'RecyclerView'],
+  },
+];
+---
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">Open Source Projects</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Things I've built and shipped</p>
+    </header>
+
+    <div class="projects-grid">
+      {projects.map(proj => (
+        <article class="project-card card">
+          <div class="project-top">
+            <div class="project-icon">
+              <i class="fas fa-code-branch" aria-hidden="true"></i>
+            </div>
+            <a href={proj.url} target="_blank" rel="noopener noreferrer" class="project-link" aria-label={`View ${proj.name} on GitHub`}>
+              <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+          <h3 class="project-name">
+            <a href={proj.url} target="_blank" rel="noopener noreferrer">{proj.name}</a>
+          </h3>
+          <p class="project-desc">{proj.description}</p>
+          <ul class="project-tags">
+            {proj.tags.map(t => <li><span class="tag">{t}</span></li>)}
+          </ul>
+          <footer class="project-footer">
+            <span class="project-lang">
+              <span class="lang-dot" style={`background: ${proj.langColor}`}></span>
+              {proj.language}
+            </span>
+            <span class="project-stat">
+              <i class="far fa-star" aria-hidden="true"></i> {proj.stars}
+            </span>
+            <span class="project-stat">
+              <i class="fas fa-code-branch" aria-hidden="true"></i> {proj.forks}
+            </span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div class="projects-cta">
+      <a href="https://github.com/vivekpanchal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <i class="fab fa-github" aria-hidden="true"></i> View all on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .project-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .project-link {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition);
+  }
+
+  .project-link:hover {
+    color: var(--color-primary);
+  }
+
+  .project-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .project-name a {
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .project-name a:hover {
+    color: var(--color-primary);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .project-lang {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+  }
+
+  .lang-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .project-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .projects-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+</style>

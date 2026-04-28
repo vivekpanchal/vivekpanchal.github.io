@@ -1,0 +1,195 @@
+---
+---
+
+<section class="greeting section" id="home" aria-label="Introduction">
+  <div class="container greeting-inner">
+    <div class="greeting-text">
+      <p class="greeting-hello">Hi there! <span class="wave" aria-hidden="true">👋</span></p>
+      <h1 class="greeting-name">I'm <span class="name-highlight">Vivek Panchal</span></h1>
+      <h2 class="greeting-role">Android Developer &amp; SDE-2</h2>
+      <p class="greeting-bio">
+        Passionate Android developer based in <strong>New Delhi, India</strong>.
+        I build robust, scalable mobile experiences using <strong>Kotlin &amp; Java</strong>
+        with architectures like MVVM, Dagger2, and RxJava.
+        Currently working as SDE-2 at <strong>Trust</strong>.
+      </p>
+      <div class="greeting-actions">
+        <a href="/#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Get in Touch
+        </a>
+        <a href="https://github.com/vivekpanchal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fab fa-github" aria-hidden="true"></i> GitHub
+        </a>
+      </div>
+      <ul class="greeting-socials social-links" aria-label="Social profiles">
+        <li><a href="https://linkedin.com/in/vivekpanchal07" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a href="https://twitter.com/vivekpanchal07" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+        <li><a href="https://medium.com/@vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium-m" aria-hidden="true"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow"><i class="fab fa-stack-overflow" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+
+    <div class="greeting-image" aria-hidden="true">
+      <div class="avatar-ring">
+        <img
+          src="https://avatars.githubusercontent.com/u/22134822?v=4"
+          alt="Vivek Panchal"
+          width="320"
+          height="320"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="floating-badge badge-android">
+        <i class="fab fa-android" aria-hidden="true"></i> Android
+      </div>
+      <div class="floating-badge badge-kotlin">
+        <span aria-hidden="true">K</span> Kotlin
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .greeting {
+    padding-top: calc(var(--header-height) + 3rem);
+    padding-bottom: 5rem;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .greeting-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .greeting-hello {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .greeting-name {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+
+  .name-highlight {
+    color: var(--color-primary);
+  }
+
+  .greeting-role {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .greeting-bio {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .greeting-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  /* Avatar */
+  .greeting-image {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar-ring {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    box-shadow: var(--shadow-lg);
+  }
+
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-card);
+  }
+
+  .floating-badge {
+    position: absolute;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: var(--shadow-md);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .badge-android {
+    background: #3ddc84;
+    color: #000;
+    bottom: 20px;
+    left: -20px;
+    animation-delay: 0s;
+  }
+
+  .badge-kotlin {
+    background: #A97BFF;
+    color: #fff;
+    top: 20px;
+    right: -20px;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  @media (max-width: 900px) {
+    .greeting-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .greeting-bio {
+      margin-inline: auto;
+    }
+
+    .greeting-actions,
+    .greeting-socials {
+      justify-content: center;
+    }
+
+    .greeting-image {
+      margin-inline: auto;
+    }
+
+    .avatar-ring {
+      width: 240px;
+      height: 240px;
+    }
+
+    .greeting {
+      min-height: unset;
+      padding-top: 5rem;
+    }
+  }
+</style>

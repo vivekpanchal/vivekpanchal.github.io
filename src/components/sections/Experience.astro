@@ -1,0 +1,183 @@
+---
+const experiences = [
+  {
+    company: 'Trust',
+    role: 'SDE-2 — Android',
+    period: '2021 – Present',
+    location: 'New Delhi, India',
+    description: 'Leading Android development for the Trust platform. Architecting scalable features using MVVM + Clean Architecture, improving app performance, and mentoring junior developers.',
+    highlights: ['MVVM + Clean Architecture', 'Kotlin Coroutines', 'Hilt DI', 'CI/CD pipeline'],
+    logo: '/images/trust-logo.png',
+    color: '#6c63ff',
+  },
+  {
+    company: 'StudyIQ',
+    role: 'Android Developer',
+    period: '2019 – 2021',
+    location: 'New Delhi, India',
+    description: 'Developed and maintained the StudyIQ Android app used by millions of students. Worked on live streaming, offline content, and performance optimisation.',
+    highlights: ['Live Video Streaming', 'ExoPlayer', 'Offline Mode', 'Room DB'],
+    logo: '/images/studyiq-logo.png',
+    color: '#ff6584',
+  },
+  {
+    company: 'MDU',
+    role: 'B.Tech — Computer Science',
+    period: '2013 – 2017',
+    location: 'Rohtak, Haryana',
+    description: 'Bachelor of Technology in Computer Science & Engineering from Maharshi Dayanand University.',
+    highlights: ['Data Structures', 'Algorithms', 'DBMS', 'Computer Networks'],
+    logo: '/images/mdu-logo.png',
+    color: '#43b89c',
+    isEducation: true,
+  },
+];
+---
+
+<section class="experience section" id="experience">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">Experience</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Where I've worked and what I've built</p>
+    </header>
+
+    <div class="timeline">
+      {experiences.filter(e => !e.isEducation).map((exp, i) => (
+        <article class="timeline-item" style={`--accent: ${exp.color}`}>
+          <div class="timeline-dot"></div>
+          <div class="timeline-card card">
+            <div class="exp-header">
+              <div class="exp-meta">
+                <h3 class="exp-role">{exp.role}</h3>
+                <p class="exp-company">{exp.company}</p>
+              </div>
+              <div class="exp-period">
+                <span class="period-badge">
+                  <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                  {exp.period}
+                </span>
+                <span class="period-badge">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  {exp.location}
+                </span>
+              </div>
+            </div>
+            <p class="exp-desc">{exp.description}</p>
+            <ul class="exp-highlights">
+              {exp.highlights.map(h => (
+                <li><span class="tag">{h}</span></li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 1.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent, var(--color-primary));
+    border: 3px solid var(--bg-body);
+    box-shadow: 0 0 0 2px var(--accent, var(--color-primary));
+    z-index: 1;
+  }
+
+  .timeline-card {
+    padding: 1.75rem;
+    border-left: 3px solid var(--accent, var(--color-primary));
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .exp-role {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .exp-company {
+    font-size: 1rem;
+    color: var(--accent, var(--color-primary));
+    font-weight: 600;
+    margin-top: 0.15rem;
+  }
+
+  .exp-period {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-end;
+  }
+
+  .period-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .exp-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .exp-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .exp-header {
+      flex-direction: column;
+    }
+
+    .exp-period {
+      align-items: flex-start;
+    }
+  }
+</style>

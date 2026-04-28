@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 — Page Not Found · Vivek Panchal" description="Page not found">
+  <div class="not-found">
+    <div class="container not-found-inner">
+      <p class="not-found-code">404</p>
+      <h1 class="not-found-title">Page not found</h1>
+      <p class="not-found-desc">Oops! The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="btn btn-primary">
+        <i class="fas fa-home" aria-hidden="true"></i> Go home
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+  .not-found {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .not-found-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .not-found-code {
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.3;
+  }
+
+  .not-found-title {
+    font-size: 2rem;
+  }
+
+  .not-found-desc {
+    color: var(--text-muted);
+    max-width: 400px;
+    margin-bottom: 0.5rem;
+  }
+</style>

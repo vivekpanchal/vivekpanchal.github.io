@@ -1,0 +1,149 @@
+---
+const certs = [
+  {
+    title: 'Google India Challenge Scholarship',
+    issuer: 'Google / Udacity',
+    year: '2018',
+    description: 'Selected for the Google India Challenge Scholarship for Android Developer Nanodegree program.',
+    icon: 'fab fa-google',
+    color: '#4285F4',
+    link: 'https://medium.com/code-yoga/my-journey-of-google-india-challenge-scholarship-7b772f430161',
+  },
+  {
+    title: 'Android Developer Nanodegree',
+    issuer: 'Udacity',
+    year: '2018',
+    description: 'Completed the Android Developer Nanodegree covering advanced Android development topics.',
+    icon: 'fas fa-graduation-cap',
+    color: '#02B3E4',
+    link: '#',
+  },
+  {
+    title: 'IBM Watson Developer',
+    issuer: 'IBM / Coursera',
+    year: '2017',
+    description: 'Certified in building AI-powered applications using IBM Watson services including Watson Conversation, Speech-to-Text, and Text-to-Speech.',
+    icon: 'fas fa-robot',
+    color: '#054ADA',
+    link: 'https://github.com/vivekpanchal/watbot',
+  },
+];
+---
+
+<section class="certifications section" id="certifications">
+  <div class="container">
+    <header class="section-header">
+      <h2 class="section-title">Certifications</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Achievements and credentials</p>
+    </header>
+
+    <div class="certs-grid">
+      {certs.map(cert => (
+        <article class="cert-card card" style={`--cert-color: ${cert.color}`}>
+          <div class="cert-icon-wrap">
+            <i class={cert.icon} aria-hidden="true"></i>
+          </div>
+          <div class="cert-body">
+            <div class="cert-meta">
+              <span class="cert-issuer">{cert.issuer}</span>
+              <span class="cert-year">{cert.year}</span>
+            </div>
+            <h3 class="cert-title">{cert.title}</h3>
+            <p class="cert-desc">{cert.description}</p>
+            {cert.link !== '#' && (
+              <a href={cert.link} target="_blank" rel="noopener noreferrer" class="cert-link">
+                View credential <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cert-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--cert-color, var(--color-primary));
+  }
+
+  .cert-card:hover {
+    border-color: var(--cert-color, var(--color-primary));
+  }
+
+  .cert-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--cert-color, var(--color-primary)) 15%, transparent);
+    color: var(--cert-color, var(--color-primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .cert-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cert-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--cert-color, var(--color-primary));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cert-year {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .cert-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .cert-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cert-color, var(--color-primary));
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: gap var(--transition);
+  }
+
+  .cert-link:hover {
+    gap: 0.6rem;
+  }
+</style>
