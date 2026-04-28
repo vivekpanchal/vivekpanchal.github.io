@@ -18,8 +18,8 @@ const formatDate = (date: Date) =>
     </header>
 
     <div class="posts-grid">
-      {posts.map(post => (
-        <article class="post-card card">
+      {posts.map((post, i) => (
+        <article class="post-card card reveal" style={`transition-delay: ${i * 0.1}s`}>
           <div class="post-tags">
             {post.data.tags.slice(0, 2).map(tag => (
               <span class="tag">{tag}</span>

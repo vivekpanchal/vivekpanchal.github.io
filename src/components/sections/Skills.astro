@@ -3,31 +3,37 @@ const skillCategories = [
   {
     title: 'Languages',
     icon: 'fas fa-code',
+    color: '#6c63ff',
     skills: ['Java', 'Kotlin', 'Python', 'JavaScript', 'SQL'],
   },
   {
     title: 'Android',
     icon: 'fab fa-android',
+    color: '#3ddc84',
     skills: ['Android SDK', 'MVVM', 'Jetpack', 'Room DB', 'LiveData', 'ViewModel', 'Navigation', 'WorkManager'],
   },
   {
     title: 'Libraries & DI',
     icon: 'fas fa-cubes',
+    color: '#f59e0b',
     skills: ['Dagger2', 'Hilt', 'RxJava', 'Coroutines', 'Retrofit', 'OkHttp', 'Glide', 'Picasso'],
   },
   {
     title: 'Tools & Platforms',
     icon: 'fas fa-tools',
+    color: '#06b6d4',
     skills: ['Git', 'GitHub', 'Gradle', 'Firebase', 'IBM Watson', 'Google Cloud', 'JIRA', 'Android Studio'],
   },
   {
     title: 'Architecture',
     icon: 'fas fa-layer-group',
+    color: '#a855f7',
     skills: ['MVVM', 'MVC', 'Clean Architecture', 'Repository Pattern', 'SOLID Principles'],
   },
   {
     title: 'Testing',
     icon: 'fas fa-vial',
+    color: '#ec4899',
     skills: ['JUnit', 'Espresso', 'Mockito', 'Unit Testing', 'Instrumented Tests'],
   },
 ];
@@ -42,10 +48,10 @@ const skillCategories = [
     </header>
 
     <div class="skills-grid">
-      {skillCategories.map(({ title, icon, skills }) => (
-        <div class="skill-card card">
+      {skillCategories.map(({ title, icon, color, skills }, i) => (
+        <div class="skill-card card reveal" style={`transition-delay: ${i * 0.08}s`}>
           <div class="skill-card-header">
-            <span class="skill-icon">
+            <span class="skill-icon" style={`background: ${color}22; color: ${color}`}>
               <i class={icon} aria-hidden="true"></i>
             </span>
             <h3 class="skill-title">{title}</h3>

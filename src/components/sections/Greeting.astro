@@ -2,17 +2,35 @@
 ---
 
 <section class="greeting section" id="home" aria-label="Introduction">
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
   <div class="container greeting-inner">
     <div class="greeting-text">
       <p class="greeting-hello">Hi there! <span class="wave" aria-hidden="true">👋</span></p>
       <h1 class="greeting-name">I'm <span class="name-highlight">Vivek Panchal</span></h1>
-      <h2 class="greeting-role">Android Developer &amp; SDE-2</h2>
+      <h2 class="greeting-role"><span class="role-highlight">Android Developer</span> &amp; SDE-2</h2>
       <p class="greeting-bio">
         Passionate Android developer based in <strong>New Delhi, India</strong>.
         I build robust, scalable mobile experiences using <strong>Kotlin &amp; Java</strong>
         with architectures like MVVM, Dagger2, and RxJava.
         Currently working as SDE-2 at <strong>Trust</strong>.
       </p>
+      <div class="greeting-stats" role="list" aria-label="Career highlights">
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">5+</span>
+          <span class="stat-label">Years Exp</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">10+</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">2M+</span>
+          <span class="stat-label">Users Reached</span>
+        </div>
+      </div>
       <div class="greeting-actions">
         <a href="/#contact" class="btn btn-primary">
           <i class="fas fa-paper-plane" aria-hidden="true"></i> Get in Touch
@@ -57,6 +75,36 @@
     min-height: 90vh;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gradient orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb-1 {
+    top: -15%;
+    right: -8%;
+    width: 55vw;
+    height: 55vw;
+    max-width: 700px;
+    max-height: 700px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.13) 0%, transparent 70%);
+  }
+
+  .orb-2 {
+    bottom: -10%;
+    left: -6%;
+    width: 38vw;
+    height: 38vw;
+    max-width: 480px;
+    max-height: 480px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.09) 0%, transparent 70%);
   }
 
   .greeting-inner {
@@ -64,6 +112,8 @@
     grid-template-columns: 1fr auto;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   .greeting-hello {
@@ -81,7 +131,10 @@
   }
 
   .name-highlight {
-    color: var(--color-primary);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .greeting-role {
@@ -91,12 +144,74 @@
     margin-bottom: 1.25rem;
   }
 
+  .role-highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+    position: relative;
+  }
+
+  .role-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transform-origin: left;
+    animation: underline-reveal 0.8s ease 0.4s both;
+  }
+
+  @keyframes underline-reveal {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
   .greeting-bio {
     font-size: 1.05rem;
     color: var(--text-secondary);
     max-width: 520px;
     line-height: 1.8;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Stats row */
+  .greeting-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    margin-bottom: 1.75rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .stat-num {
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-color);
+    flex-shrink: 0;
   }
 
   .greeting-actions {

@@ -2,8 +2,10 @@
 :root {
   --color-primary: #6c63ff;
   --color-primary-dark: #5a52d5;
-  --color-secondary: #55198b;
+  --color-secondary: #a855f7;
   --color-accent: #868e96;
+  --gradient-primary: linear-gradient(135deg, #6c63ff, #a855f7);
+  --glow-primary: 0 0 30px rgba(108, 99, 255, 0.25);
 
   --bg-body: #ffffff;
   --bg-card: #f8f9fa;
@@ -67,6 +69,10 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--bg-body);
+  background-image:
+    radial-gradient(ellipse at 85% 0%, rgba(108, 99, 255, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 100%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
   transition: background-color var(--transition), color var(--transition);
@@ -169,16 +175,16 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary {
-  background: var(--color-primary);
+  background: var(--gradient-primary);
   color: #fff;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.35);
 }
 
 .btn-primary:hover {
-  background: var(--color-primary-dark);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+  box-shadow: 0 8px 28px rgba(108, 99, 255, 0.5);
+  filter: brightness(1.1);
 }
 
 .btn-outline {
@@ -202,9 +208,9 @@ h1, h2, h3, h4 {
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
-  border-color: var(--color-primary);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(108, 99, 255, 0.18);
+  border-color: rgba(108, 99, 255, 0.45);
 }
 
 /* ===== Tags / Badges ===== */
@@ -281,11 +287,11 @@ h1, h2, h3, h4 {
 
 /* ===== Divider ===== */
 .divider {
-  width: 60px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  width: 80px;
+  height: 5px;
+  background: var(--gradient-primary);
   border-radius: var(--radius-pill);
-  margin: 0.75rem auto 0;
+  margin: 0.75rem auto 1rem;
 }
 
 /* ===== Scrollbar ===== */
@@ -323,4 +329,33 @@ h1, h2, h3, h4 {
   .grid-auto {
     grid-template-columns: 1fr;
   }
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Section Alt Background ===== */
+.section-alt {
+  background: rgba(108, 99, 255, 0.028);
+}
+
+[data-theme="dark"] .section-alt {
+  background: rgba(108, 99, 255, 0.05);
+}
+
+/* ===== Gradient Text Utility ===== */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

@@ -72,8 +72,8 @@ const projects = [
     </header>
 
     <div class="projects-grid">
-      {projects.map(proj => (
-        <article class="project-card card">
+      {projects.map((proj, i) => (
+        <article class="project-card card reveal" style={`--lang-color: ${proj.langColor}; transition-delay: ${i * 0.07}s`}>
           <div class="project-top">
             <div class="project-icon">
               <i class="fas fa-code-branch" aria-hidden="true"></i>
@@ -125,6 +125,20 @@ const projects = [
     flex-direction: column;
     gap: 0.75rem;
     padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--lang-color, var(--color-primary));
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    opacity: 0.85;
   }
 
   .project-top {
