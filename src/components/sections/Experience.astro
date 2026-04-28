@@ -1,35 +1,59 @@
 ---
 const experiences = [
   {
-    company: 'Trust',
+    company: 'Dario',
     role: 'SDE-2 — Android',
-    period: '2021 – Present',
+    period: 'Nov 2024 – Present',
     location: 'New Delhi, India',
-    description: 'Leading Android development for the Trust platform. Architecting scalable features using MVVM + Clean Architecture, improving app performance, and mentoring junior developers.',
-    highlights: ['MVVM + Clean Architecture', 'Kotlin Coroutines', 'Hilt DI', 'CI/CD pipeline'],
-    logo: '/images/trust-logo.png',
+    description: 'Leading Android development at Dario, a digital health platform. Architecting scalable features using MVVM + Clean Architecture, driving performance improvements, and collaborating cross-functionally on product delivery.',
+    highlights: ['Kotlin', 'MVVM', 'Clean Architecture', 'Hilt DI', 'Jetpack'],
     color: '#6c63ff',
+    current: true,
   },
   {
-    company: 'StudyIQ',
+    company: 'Trustt',
+    role: 'SDE-2 — Android',
+    period: 'Jun 2023 – Nov 2024',
+    location: 'Bangalore, India · On-site',
+    description: 'Promoted to SDE-2 at Trustt. Led key Android feature development, improved app architecture, mentored junior engineers, and drove adoption of Kotlin Coroutines and modern Jetpack components.',
+    highlights: ['Android', 'Kotlin', 'Algorithms', 'Jetpack', 'Coroutines'],
+    color: '#a855f7',
+  },
+  {
+    company: 'Trustt',
+    role: 'SDE — Android',
+    period: 'Jun 2022 – May 2023',
+    location: 'Bangalore, India · Hybrid',
+    description: 'Joined Trustt as an SDE, working on core Android product features. Implemented complex UI flows, integrated APIs, and optimised app performance across the codebase.',
+    highlights: ['Android', 'Kotlin', 'Algorithms', 'REST APIs', 'MVVM'],
+    color: '#8b5cf6',
+  },
+  {
+    company: 'StudyIQ Education',
+    role: 'Senior Android Developer',
+    period: 'Jul 2020 – Feb 2022',
+    location: 'Delhi, India · On-site',
+    description: 'Developed and maintained the StudyIQ Android app used by millions of students across India. Built live video streaming, offline content downloads, and performance-critical features.',
+    highlights: ['Android', 'Android Development', 'ExoPlayer', 'Live Streaming', 'Room DB'],
+    color: '#f59e0b',
+  },
+  {
+    company: 'Broad Strokes Ventures',
+    role: 'Senior Android Developer',
+    period: 'Aug 2019 – Apr 2020',
+    location: 'Delhi, India · On-site',
+    description: 'Built Android applications end-to-end for Broad Strokes Ventures. Responsible for architecture decisions, SDK integrations, and delivering production-ready mobile features.',
+    highlights: ['Android Development', 'Android SDK', 'Java'],
+    color: '#ec4899',
+  },
+  {
+    company: 'Stackfusion Private Limited',
     role: 'Android Developer',
-    period: '2019 – 2021',
-    location: 'New Delhi, India',
-    description: 'Developed and maintained the StudyIQ Android app used by millions of students. Worked on live streaming, offline content, and performance optimisation.',
-    highlights: ['Live Video Streaming', 'ExoPlayer', 'Offline Mode', 'Room DB'],
-    logo: '/images/studyiq-logo.png',
-    color: '#ff6584',
-  },
-  {
-    company: 'MDU',
-    role: 'B.Tech — Computer Science',
-    period: '2013 – 2017',
-    location: 'Rohtak, Haryana',
-    description: 'Bachelor of Technology in Computer Science & Engineering from Maharshi Dayanand University.',
-    highlights: ['Data Structures', 'Algorithms', 'DBMS', 'Computer Networks'],
-    logo: '/images/mdu-logo.png',
-    color: '#43b89c',
-    isEducation: true,
+    period: 'Jul 2018 – Aug 2019',
+    location: 'Gurugram, Haryana · On-site',
+    description: 'Started career as an Android Developer at Stackfusion, building and shipping Android applications. Gained hands-on experience with the full mobile development lifecycle.',
+    highlights: ['Android', 'Android Development', 'Java', 'REST APIs'],
+    color: '#06b6d4',
   },
 ];
 ---
@@ -44,13 +68,16 @@ const experiences = [
     </header>
 
     <div class="timeline">
-      {experiences.filter(e => !e.isEducation).map((exp, i) => (
-        <article class="timeline-item" style={`--accent: ${exp.color}`}>
+      {experiences.map((exp, i) => (
+        <article class="timeline-item reveal" style={`--accent: ${exp.color}; transition-delay: ${i * 0.07}s`}>
           <div class="timeline-dot"></div>
           <div class="timeline-card card">
             <div class="exp-header">
               <div class="exp-meta">
-                <h3 class="exp-role">{exp.role}</h3>
+                <h3 class="exp-role">
+                  {exp.role}
+                  {exp.current && <span class="current-badge">Current</span>}
+                </h3>
                 <p class="exp-company">{exp.company}</p>
               </div>
               <div class="exp-period">
@@ -134,6 +161,22 @@ const experiences = [
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .current-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
   }
 
   .exp-company {

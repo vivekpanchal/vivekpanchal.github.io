@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Vivek Panchal — Android Developer',
-  description = 'SDE-2 at Trust. Android developer specializing in Java & Kotlin. Building great mobile experiences with MVVM, Dagger2, RxJava. Based in New Delhi, India.',
+  title = 'Vivek Panchal — Senior Android Developer | SDE-2 at Dario',
+  description = 'Vivek Panchal — Senior Android Developer with 7+ years of experience. SDE-2 at Dario. Expert in Kotlin, Java, MVVM, Jetpack, Dagger2, Coroutines. Previously at Trustt & StudyIQ. Based in New Delhi, India.',
   image = '/og-image.png',
   url = Astro.url.href,
   type = 'website',
@@ -30,8 +30,11 @@ const canonicalUrl = url;
 <meta name="description" content={description} />
 <meta name="author" content="Vivek Panchal" />
 <meta name="keywords" content={[
-  'Vivek Panchal', 'Android Developer', 'SDE', 'Java', 'Kotlin',
-  'MVVM', 'Dagger2', 'RxJava', 'New Delhi', 'India', 'Software Engineer',
+  'Vivek Panchal', 'Android Developer', 'Senior Android Developer', 'SDE-2',
+  'Kotlin', 'Java', 'MVVM', 'Clean Architecture', 'Jetpack Compose',
+  'Dagger2', 'Hilt', 'Coroutines', 'RxJava', 'Retrofit', 'Room DB',
+  'Dario', 'Trustt', 'StudyIQ', 'New Delhi', 'India', 'Software Engineer',
+  'Mobile Developer', 'Android SDK', 'Firebase', 'GitHub',
   ...tags
 ].join(', ')} />
 <meta name="robots" content="index, follow" />
@@ -80,14 +83,24 @@ const canonicalUrl = url;
   "url": "https://vivekpanchal.dev",
   "sameAs": [
     "https://github.com/vivekpanchal",
-    "https://linkedin.com/in/vivekpanchal07",
+    "https://linkedin.com/in/vivekpanchal-developer",
     "https://medium.com/@vivekpanchal",
     "https://twitter.com/vivekpanchal07"
   ],
   "jobTitle": "SDE-2",
   "worksFor": {
     "@type": "Organization",
-    "name": "Trust"
+    "name": "Dario"
+  },
+  "knowsAbout": ["Android Development", "Kotlin", "Java", "MVVM", "Clean Architecture", "Jetpack", "Dagger2", "Hilt", "Coroutines", "RxJava", "Firebase", "Room DB"],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Senior Android Developer",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "New Delhi"
+    },
+    "experienceRequirements": "7+ years"
   },
   "description": description,
   "image": new URL(image, Astro.site),
