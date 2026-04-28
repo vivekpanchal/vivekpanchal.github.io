@@ -1,0 +1,113 @@
+---
+const skillCategories = [
+  {
+    title: 'Languages',
+    icon: 'fas fa-code',
+    color: '#6c63ff',
+    skills: ['Java', 'Kotlin', 'Python', 'JavaScript', 'SQL'],
+  },
+  {
+    title: 'Android',
+    icon: 'fab fa-android',
+    color: '#3ddc84',
+    skills: ['Android SDK', 'MVVM', 'Jetpack', 'Room DB', 'LiveData', 'ViewModel', 'Navigation', 'WorkManager'],
+  },
+  {
+    title: 'Libraries & DI',
+    icon: 'fas fa-cubes',
+    color: '#f59e0b',
+    skills: ['Dagger2', 'Hilt', 'RxJava', 'Coroutines', 'Retrofit', 'OkHttp', 'Glide', 'Picasso'],
+  },
+  {
+    title: 'Tools & Platforms',
+    icon: 'fas fa-tools',
+    color: '#06b6d4',
+    skills: ['Git', 'GitHub', 'Gradle', 'Firebase', 'IBM Watson', 'Google Cloud', 'JIRA', 'Android Studio'],
+  },
+  {
+    title: 'Architecture',
+    icon: 'fas fa-layer-group',
+    color: '#a855f7',
+    skills: ['MVVM', 'MVC', 'Clean Architecture', 'Repository Pattern', 'SOLID Principles'],
+  },
+  {
+    title: 'Testing',
+    icon: 'fas fa-vial',
+    color: '#ec4899',
+    skills: ['JUnit', 'Espresso', 'Mockito', 'Unit Testing', 'Instrumented Tests'],
+  },
+];
+---
+
+<section class="skills section" id="skills">
+  <div class="container">
+    <header class="section-header reveal">
+      <p class="section-num">01 / Skills</p>
+      <h2 class="section-title">What I Do</h2>
+      <div class="divider"></div>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+    </header>
+
+    <div class="skills-grid">
+      {skillCategories.map(({ title, icon, color, skills }, i) => (
+        <div class="skill-card card reveal" style={`transition-delay: ${i * 0.08}s`}>
+          <div class="skill-card-header">
+            <span class="skill-icon" style={`background: ${color}22; color: ${color}`}>
+              <i class={icon} aria-hidden="true"></i>
+            </span>
+            <h3 class="skill-title">{title}</h3>
+          </div>
+          <ul class="skill-tags" aria-label={`${title} skills`}>
+            {skills.map(skill => (
+              <li><span class="tag">{skill}</span></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 1.75rem;
+  }
+
+  .skill-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .skill-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>

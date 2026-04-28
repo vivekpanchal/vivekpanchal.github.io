@@ -1,0 +1,344 @@
+---
+---
+
+<section class="greeting section" id="home" aria-label="Introduction">
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="container greeting-inner">
+    <div class="greeting-text">
+      <div class="currently-badge">
+        <span class="badge-dot" aria-hidden="true"></span>
+        Currently at <strong>Dario</strong> · SDE-2
+      </div>
+      <p class="greeting-hello">Hi, I'm</p>
+      <h1 class="greeting-name"><span class="name-highlight">Vivek Panchal</span></h1>
+      <h2 class="greeting-role"><span class="role-highlight">Android Developer</span> &amp; SDE-2</h2>
+      <p class="greeting-bio">
+        Senior Android Developer with <strong>7+ years</strong> of experience building scalable mobile apps.
+        Currently SDE-2 at <strong>Dario</strong>, previously at <strong>Trustt</strong> &amp; <strong>StudyIQ</strong>.
+        Specialising in <strong>Kotlin, MVVM, Clean Architecture</strong>, and Jetpack — based in <strong>New Delhi, India</strong>.
+      </p>
+      <div class="greeting-stats" role="list" aria-label="Career highlights">
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">7+</span>
+          <span class="stat-label">Years Exp</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">10+</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat" role="listitem">
+          <span class="stat-num gradient-text">2M+</span>
+          <span class="stat-label">Users Reached</span>
+        </div>
+      </div>
+      <div class="greeting-actions">
+        <a href="/#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Get in Touch
+        </a>
+        <a href="https://github.com/vivekpanchal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <i class="fab fa-github" aria-hidden="true"></i> GitHub
+        </a>
+      </div>
+      <ul class="greeting-socials social-links" aria-label="Social profiles">
+        <li><a href="https://linkedin.com/in/vivekpanchal07" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+        <li><a href="https://twitter.com/vivekpanchal07" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+        <li><a href="https://medium.com/@vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium-m" aria-hidden="true"></i></a></li>
+        <li><a href="https://stackoverflow.com/users/vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow"><i class="fab fa-stack-overflow" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+
+    <div class="greeting-image" aria-hidden="true">
+      <div class="avatar-ring">
+        <img
+          src="https://avatars.githubusercontent.com/u/22134822?v=4"
+          alt="Vivek Panchal"
+          width="320"
+          height="320"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="floating-badge badge-android">
+        <i class="fab fa-android" aria-hidden="true"></i> Android
+      </div>
+      <div class="floating-badge badge-kotlin">
+        <span aria-hidden="true">K</span> Kotlin
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .greeting {
+    padding-top: calc(var(--header-height) + 3rem);
+    padding-bottom: 5rem;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Gradient orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .orb-1 {
+    top: -15%;
+    right: -8%;
+    width: 55vw;
+    height: 55vw;
+    max-width: 700px;
+    max-height: 700px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.13) 0%, transparent 70%);
+  }
+
+  .orb-2 {
+    bottom: -10%;
+    left: -6%;
+    width: 38vw;
+    height: 38vw;
+    max-width: 480px;
+    max-height: 480px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.09) 0%, transparent 70%);
+  }
+
+  .greeting-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Currently-at badge */
+  .currently-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 1.1rem;
+    border-radius: var(--radius-pill);
+    background: rgba(108, 99, 255, 0.1);
+    border: 1px solid rgba(108, 99, 255, 0.25);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.1rem;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    flex-shrink: 0;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+    50%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  }
+
+  .greeting-hello {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .greeting-name {
+    font-family: var(--font-body);
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    margin-bottom: 0.4rem;
+    line-height: 1.0;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .name-highlight {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .greeting-role {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+  }
+
+  .role-highlight {
+    color: var(--color-primary);
+    font-weight: 600;
+    position: relative;
+  }
+
+  .role-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transform-origin: left;
+    animation: underline-reveal 0.8s ease 0.5s both;
+  }
+
+  @keyframes underline-reveal {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .greeting-bio {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Stats row */
+  .greeting-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    margin-bottom: 1.75rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .stat-num {
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-color);
+    flex-shrink: 0;
+  }
+
+  .greeting-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  /* Avatar */
+  .greeting-image {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar-ring {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    box-shadow: var(--shadow-lg);
+  }
+
+  .avatar-ring img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--bg-card);
+  }
+
+  .floating-badge {
+    position: absolute;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    box-shadow: var(--shadow-md);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .badge-android {
+    background: #3ddc84;
+    color: #000;
+    bottom: 20px;
+    left: -20px;
+    animation-delay: 0s;
+  }
+
+  .badge-kotlin {
+    background: #A97BFF;
+    color: #fff;
+    top: 20px;
+    right: -20px;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  @media (max-width: 900px) {
+    .greeting-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .greeting-bio {
+      margin-inline: auto;
+    }
+
+    .greeting-actions,
+    .greeting-socials {
+      justify-content: center;
+    }
+
+    .greeting-image {
+      margin-inline: auto;
+    }
+
+    .avatar-ring {
+      width: 240px;
+      height: 240px;
+    }
+
+    .greeting {
+      min-height: unset;
+      padding-top: 5rem;
+    }
+  }
+</style>

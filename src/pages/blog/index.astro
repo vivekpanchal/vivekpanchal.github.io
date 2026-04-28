@@ -1,0 +1,213 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Collect all unique tags
+const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
+---
+
+<Layout
+  title="Blog — Vivek Panchal"
+  description="Articles on Android development, MVVM architecture, Kotlin, and developer journeys by Vivek Panchal."
+>
+  <div class="blog-index">
+    <div class="container">
+      <header class="blog-header">
+        <a href="/" class="back-link">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i> Back home
+        </a>
+        <h1 class="blog-title">Blog</h1>
+        <p class="blog-subtitle">
+          Writing about Android development, architecture patterns, and the developer journey.
+          {posts.length} article{posts.length !== 1 ? 's' : ''}.
+        </p>
+      </header>
+
+      <!-- Tag filter -->
+      <div class="tag-filter" aria-label="Filter by tag">
+        <button class="tag-btn active" data-tag="all">All</button>
+        {allTags.map(tag => (
+          <button class="tag-btn" data-tag={tag}>{tag}</button>
+        ))}
+      </div>
+
+      <div class="posts-list" id="posts-list">
+        {posts.map(post => (
+          <article class="post-item card" data-tags={post.data.tags.join(',')}>
+            <div class="post-meta">
+              <time datetime={post.data.pubDate.toISOString()} class="post-date">
+                <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                {formatDate(post.data.pubDate)}
+              </time>
+              <span class="post-read">
+                <i class="far fa-clock" aria-hidden="true"></i>
+                {Math.ceil((post.body?.split(' ').length ?? 0) / 200)} min read
+              </span>
+            </div>
+            <h2 class="post-title">
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </h2>
+            <p class="post-desc">{post.data.description}</p>
+            <ul class="post-tags">
+              {post.data.tags.map(tag => <li><span class="tag">{tag}</span></li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<style>
+  .blog-index {
+    padding: 3rem 0 6rem;
+    min-height: 80vh;
+  }
+
+  .blog-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    transition: color var(--transition);
+  }
+
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+
+  .blog-title {
+    font-family: var(--font-body);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .blog-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .tag-btn {
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+
+  .tag-btn:hover,
+  .tag-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .post-item {
+    padding: 1.75rem;
+  }
+
+  .post-item.hidden {
+    display: none;
+  }
+
+  .post-meta {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .post-date,
+  .post-read {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+
+  .post-title a {
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .post-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .post-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+  const articles = document.querySelectorAll<HTMLElement>('.post-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const tag = btn.dataset.tag ?? 'all';
+      articles.forEach(article => {
+        const tags = article.dataset.tags?.split(',') ?? [];
+        article.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+      });
+    });
+  });
+</script>

@@ -1,0 +1,73 @@
+---
+const socials = [
+  { href: 'https://github.com/vivekpanchal',           icon: 'fab fa-github',        label: 'GitHub' },
+  { href: 'https://linkedin.com/in/vivekpanchal07',    icon: 'fab fa-linkedin-in',   label: 'LinkedIn' },
+  { href: 'https://twitter.com/vivekpanchal07',        icon: 'fab fa-twitter',       label: 'Twitter' },
+  { href: 'https://medium.com/@vivekpanchal',          icon: 'fab fa-medium-m',      label: 'Medium' },
+  { href: 'https://stackoverflow.com/users/vivekpanchal', icon: 'fab fa-stack-overflow', label: 'Stack Overflow' },
+  { href: 'https://instagram.com/vivekpanchal07',      icon: 'fab fa-instagram',     label: 'Instagram' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p class="footer-tagline">
+      Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> · Deployed on GitHub Pages
+    </p>
+
+    <ul class="footer-socials" aria-label="Social links">
+      {socials.map(({ href, icon, label }) => (
+        <li>
+          <a href={href} class="social-link" target="_blank" rel="noopener noreferrer" aria-label={label}>
+            <i class={icon} aria-hidden="true"></i>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="footer-copy">
+      &copy; {year} Vivek Panchal. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .footer-tagline a {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-copy {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+</style>
