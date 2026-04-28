@@ -156,8 +156,22 @@ h1, h2, h3, h4 {
 }
 
 .section-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
+}
+
+.section-header .divider {
+  margin: 0.75rem 0 1rem;
+}
+
+.section-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 0.3rem;
+  opacity: 0.85;
 }
 
 /* ===== Buttons ===== */
@@ -358,4 +372,55 @@ h1, h2, h3, h4 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ===== Scroll Progress Bar ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--gradient-primary);
+  z-index: 200;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.5);
+}
+
+/* ===== Custom Cursor (desktop only) ===== */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: none !important; }
+
+  .cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    will-change: left, top;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(108, 99, 255, 0.45);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+    will-change: left, top;
+  }
+
+  .cursor-ring.hovering {
+    width: 54px;
+    height: 54px;
+    border-color: var(--color-primary);
+    opacity: 0.7;
+  }
 }

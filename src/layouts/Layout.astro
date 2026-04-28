@@ -21,12 +21,10 @@ const props = Astro.props;
   <head>
     <SEO {...props} />
     <title>{props.title ?? 'Vivek Panchal — Android Developer'}</title>
-    <!-- Prevent FOUC: apply theme before paint -->
+    <!-- Prevent FOUC: apply theme before paint (dark default) -->
     <script is:inline>
       (function () {
-        var theme =
-          localStorage.getItem('theme') ||
-          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        var theme = localStorage.getItem('theme') || 'dark';
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
@@ -38,6 +36,12 @@ const props = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
+    <!-- Scroll progress -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
     <Header />
     <main id="main-content">
       <slot />
@@ -90,6 +94,7 @@ const props = Astro.props;
 </style>
 
 <script>
+  // Back to top
   const btn = document.getElementById('back-to-top');
   window.addEventListener('scroll', () => {
     btn?.classList.toggle('visible', window.scrollY > 400);
@@ -107,4 +112,38 @@ const props = Astro.props;
     { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
   );
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Scroll progress bar
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+    if (progressBar) progressBar.style.width = pct + '%';
+  }, { passive: true });
+
+  // Custom cursor (desktop only — CSS already hides on touch via @media)
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (dot && ring && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let rx = 0, ry = 0, cx = 0, cy = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      cx = e.clientX; cy = e.clientY;
+      dot.style.left = cx + 'px';
+      dot.style.top  = cy + 'px';
+    });
+
+    (function loop() {
+      rx += (cx - rx) * 0.11;
+      ry += (cy - ry) * 0.11;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+
+    document.querySelectorAll('a, button, .card, .btn, .nav-link').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+    });
+  }
 </script>
