@@ -174,7 +174,9 @@ const readTime = Math.ceil(wordCount / 200);
   }
 
   .post-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     font-size: clamp(1.75rem, 4vw, 2.75rem);
     line-height: 1.2;
     margin-bottom: 0.75rem;
@@ -322,7 +324,6 @@ const readTime = Math.ceil(wordCount / 200);
     background: rgba(108, 99, 255, 0.05);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     color: var(--text-secondary);
-    font-style: italic;
   }
 
   .prose :global(code) {

@@ -97,7 +97,9 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
   }
 
   .blog-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
+    font-weight: 800;
+    letter-spacing: -0.02em;
     font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 0.5rem;
   }
