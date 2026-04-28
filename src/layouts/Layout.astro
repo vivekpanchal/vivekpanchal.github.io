@@ -38,10 +38,6 @@ const props = Astro.props;
   <body>
     <!-- Scroll progress -->
     <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-    <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-
     <Header />
     <main id="main-content">
       <slot />
@@ -121,29 +117,4 @@ const props = Astro.props;
     if (progressBar) progressBar.style.width = pct + '%';
   }, { passive: true });
 
-  // Custom cursor (desktop only — CSS already hides on touch via @media)
-  const dot  = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (dot && ring && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let rx = 0, ry = 0, cx = 0, cy = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      cx = e.clientX; cy = e.clientY;
-      dot.style.left = cx + 'px';
-      dot.style.top  = cy + 'px';
-    });
-
-    (function loop() {
-      rx += (cx - rx) * 0.11;
-      ry += (cy - ry) * 0.11;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(loop);
-    })();
-
-    document.querySelectorAll('a, button, .card, .btn, .nav-link').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-    });
-  }
 </script>
