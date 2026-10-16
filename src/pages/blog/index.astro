@@ -51,7 +51,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
               </span>
             </div>
             <h2 class="post-title">
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
             </h2>
             <p class="post-desc">{post.data.description}</p>
             <ul class="post-tags">
@@ -195,18 +195,21 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
 </style>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
-  const articles = document.querySelectorAll<HTMLElement>('.post-item');
+  // astro:page-load also fires on client-side navigations (ViewTransitions), where module scripts don't re-run.
+  document.addEventListener('astro:page-load', () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+    const articles = document.querySelectorAll<HTMLElement>('.post-item');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-      const tag = btn.dataset.tag ?? 'all';
-      articles.forEach(article => {
-        const tags = article.dataset.tags?.split(',') ?? [];
-        article.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+        const tag = btn.dataset.tag ?? 'all';
+        articles.forEach(article => {
+          const tags = article.dataset.tags?.split(',') ?? [];
+          article.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+        });
       });
     });
   });

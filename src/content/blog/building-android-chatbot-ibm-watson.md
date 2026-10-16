@@ -3,7 +3,7 @@ title: 'Building a Voice-Enabled Android Chatbot with IBM Watson'
 description: 'A step-by-step guide to building an AI-powered voice chatbot for Android using IBM Watson Conversation, Speech-to-Text, and Text-to-Speech services.'
 pubDate: '2018-03-20'
 tags: ['Android', 'IBM Watson', 'AI', 'Chatbot', 'Java', 'Tutorial']
-heroImage: '/images/blog/ibm-watson.jpg'
+heroImage: '/images/blog/ibm-watson.png'
 ---
 
 ## Introduction

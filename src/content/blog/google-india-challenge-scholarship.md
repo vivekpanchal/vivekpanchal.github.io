@@ -3,7 +3,7 @@ title: 'My Journey of Google India Challenge Scholarship'
 description: 'How I got selected for the Google India Challenge Scholarship for the Android Developer Nanodegree — the journey, the learnings, and the community.'
 pubDate: '2018-05-12'
 tags: ['Android', 'Google', 'Scholarship', 'Career', 'Udacity']
-heroImage: '/images/blog/google-scholarship.jpg'
+heroImage: '/images/blog/google-scholarship.png'
 ---
 
 ## About Me

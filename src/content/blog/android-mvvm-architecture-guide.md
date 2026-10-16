@@ -3,7 +3,6 @@ title: 'Android MVVM Architecture: A Practical Guide'
 description: 'A hands-on guide to implementing MVVM architecture in Android using ViewModel, LiveData, Repository pattern, and Hilt for dependency injection.'
 pubDate: '2023-06-15'
 tags: ['Android', 'MVVM', 'Architecture', 'Kotlin', 'Hilt', 'LiveData']
-heroImage: '/images/blog/mvvm-architecture.jpg'
 ---
 
 ## Why Architecture Matters

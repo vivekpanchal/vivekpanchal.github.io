@@ -1,48 +1,35 @@
 ---
 ---
 
-<button
-  id="theme-toggle"
-  class="theme-toggle"
-  aria-label="Toggle dark mode"
-  title="Toggle dark mode"
->
+<button id="theme-toggle" class="theme-toggle" type="button">
   <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <circle cx="12" cy="12" r="5"/>
-    <line x1="12" y1="1" x2="12" y2="3"/>
-    <line x1="12" y1="21" x2="12" y2="23"/>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-    <line x1="1" y1="12" x2="3" y2="12"/>
-    <line x1="21" y1="12" x2="23" y2="12"/>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
   </svg>
   <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
   </svg>
+  <!-- Both labels in markup; the inactive one is display:none so the control stays correct without JS. -->
+  <span class="sr-only icon-sun">Switch to dark theme</span>
+  <span class="sr-only icon-moon">Switch to light theme</span>
 </button>
 
 <style>
   .theme-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    transition: all var(--transition);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    color: var(--fg-2);
+    transition: color var(--transition), background-color var(--transition);
     flex-shrink: 0;
   }
 
   .theme-toggle:hover {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
-    transform: rotate(20deg);
+    color: var(--fg);
+    background: var(--bg-subtle);
   }
 
   .theme-toggle svg {
@@ -50,29 +37,42 @@
     height: 18px;
   }
 
-  .icon-moon { display: none; }
-
-  [data-theme="dark"] .icon-sun  { display: none; }
-  [data-theme="dark"] .icon-moon { display: block; }
+  /* --icon-sun / --icon-moon flip with the palette in global.css */
+  .icon-sun  { display: var(--icon-sun); }
+  .icon-moon { display: var(--icon-moon); }
 </style>
 
 <script>
-  const toggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
+  // Two-state toggle: "system" (no stored value) and "the opposite of system" (stored literally).
+  const KEY = 'theme';
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const meta = () => document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
 
-  const getTheme = () =>
-    localStorage.getItem('theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  function rendered(): 'light' | 'dark' {
+    const c = meta()?.content;
+    if (c === 'light' || c === 'dark') return c;
+    return systemDark.matches ? 'dark' : 'light';
+  }
 
-  const applyTheme = (theme: string) => {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  };
+  function set(target: 'light' | 'dark') {
+    const system = systemDark.matches ? 'dark' : 'light';
+    const m = meta();
+    if (m) m.content = target === system ? 'light dark' : target;
+    try {
+      if (target === system) localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, target);
+    } catch {}
+  }
 
-  // Apply on load (also done inline in Layout to avoid FOUC)
-  applyTheme(getTheme());
+  // Delegated so it survives client-side navigation re-rendering the header.
+  document.addEventListener('click', (e) => {
+    if ((e.target as Element).closest?.('#theme-toggle')) set(rendered() === 'dark' ? 'light' : 'dark');
+  });
 
-  toggle?.addEventListener('click', () => {
-    applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  // Keep tabs in sync.
+  window.addEventListener('storage', (e) => {
+    if (e.key !== KEY) return;
+    const m = meta();
+    if (m) m.content = e.newValue === 'light' || e.newValue === 'dark' ? e.newValue : 'light dark';
   });
 </script>

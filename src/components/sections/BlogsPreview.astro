@@ -27,7 +27,7 @@ const formatDate = (date: Date) =>
             ))}
           </div>
           <h3 class="post-title">
-            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
           </h3>
           <p class="post-desc">{post.data.description}</p>
           <footer class="post-footer">
@@ -35,7 +35,7 @@ const formatDate = (date: Date) =>
               <i class="far fa-calendar-alt" aria-hidden="true"></i>
               {formatDate(post.data.pubDate)}
             </time>
-            <a href={`/blog/${post.slug}`} class="read-more">
+            <a href={`/blog/${post.id}`} class="read-more">
               Read more <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
           </footer>

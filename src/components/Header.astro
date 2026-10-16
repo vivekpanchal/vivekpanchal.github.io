@@ -2,33 +2,29 @@
 import ThemeToggle from './ThemeToggle.astro';
 
 const navLinks = [
-  { href: '/#skills',          label: 'Skills' },
-  { href: '/#experience',      label: 'Experience' },
-  { href: '/#projects',        label: 'Projects' },
-  { href: '/blog',             label: 'Blog' },
-  { href: '/#education',       label: 'Education' },
-  { href: '/#contact',         label: 'Contact' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#projects',   label: 'Projects' },
+  { href: '/#skills',     label: 'Skills' },
+  { href: '/blog',        label: 'Blog' },
+  { href: '/#contact',    label: 'Contact' },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => href === currentPath;
 ---
 
 <header class="header" id="site-header">
   <div class="container header-inner">
     <a href="/" class="logo" aria-label="Vivek Panchal — home">
-      Vivek<span>.</span>
+      <span class="logo-mark" aria-hidden="true">VP</span>
+      <span class="logo-text">Vivek Panchal</span>
     </a>
 
-    <nav class="nav" id="main-nav" aria-label="Main navigation">
+    <nav class="nav" aria-label="Main">
       <ul class="nav-list">
         {navLinks.map(({ href, label }) => (
           <li>
-            <a
-              href={href}
-              class:list={['nav-link', { active: currentPath === href }]}
-            >
-              {label}
-            </a>
+            <a href={href} class="nav-link" aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
           </li>
         ))}
       </ul>
@@ -36,36 +32,57 @@ const currentPath = Astro.url.pathname;
 
     <div class="header-actions">
       <ThemeToggle />
+      <a href="/#contact" class="btn btn-primary header-cta">Hire me</a>
       <button
         class="menu-toggle"
-        id="menu-toggle"
-        aria-label="Toggle menu"
+        id="drawer-open"
+        type="button"
+        aria-label="Menu"
         aria-expanded="false"
-        aria-controls="main-nav"
+        aria-controls="drawer"
       >
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
       </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile drawer: popover (top layer) + scroll-snap swipe surface. Outside <header> so the header can be inert while open. -->
+<div class="drawer" id="drawer" popover="manual">
+  <div class="drawer-scroller">
+    <nav class="drawer-sheet" tabindex="-1" aria-label="Mobile">
+      <div class="drawer-head">
+        <span class="logo-text">Menu</span>
+        <button class="drawer-close" type="button" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </div>
+      <ul class="drawer-list">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a href={href} class="drawer-link" aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
+          </li>
+        ))}
+      </ul>
+      <a href="/#contact" class="btn btn-primary drawer-cta">Get in touch</a>
+    </nav>
+  </div>
+</div>
 
 <style>
   .header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg-header);
-    border-bottom: 1px solid var(--border-color);
     height: var(--header-height);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: background var(--transition), box-shadow var(--transition);
-  }
-
-  .header.scrolled {
-    box-shadow: var(--shadow-sm);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
   }
 
   .header-inner {
@@ -73,137 +90,268 @@ const currentPath = Astro.url.pathname;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    gap: var(--space-5);
   }
 
   .logo {
-    font-family: var(--font-body);
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    color: var(--fg);
+    font-weight: 600;
+    letter-spacing: -0.01em;
     white-space: nowrap;
   }
 
-  .logo span {
-    color: var(--color-primary);
+  .logo:hover { color: var(--fg); }
+
+  .logo-mark {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-xs);
+    background: var(--fg);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
   }
 
   .nav-list {
     display: flex;
-    gap: 0.25rem;
-    align-items: center;
+    gap: var(--space-1);
   }
 
   .nav-link {
-    padding: 0.4rem 0.85rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-xs);
+    font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--text-secondary);
-    transition: all var(--transition);
+    color: var(--fg-2);
   }
 
   .nav-link:hover,
-  .nav-link.active {
-    color: var(--color-primary);
-    background: rgba(108, 99, 255, 0.08);
+  .nav-link[aria-current='page'] {
+    color: var(--fg);
+    background: var(--bg-subtle);
   }
 
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-2);
+  }
+
+  .header-cta {
+    min-height: 36px;
+    padding: 0 var(--space-4);
   }
 
   .menu-toggle {
     display: none;
-    flex-direction: column;
-    gap: 5px;
-    width: 36px;
-    height: 36px;
-    padding: 6px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
     border-radius: var(--radius-sm);
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    color: var(--fg);
   }
 
-  .bar {
-    display: block;
-    height: 2px;
-    background: var(--text-primary);
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  .menu-toggle svg,
+  .drawer-close svg {
+    width: 22px;
+    height: 22px;
   }
 
-  /* Mobile */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: flex;
+  @media (max-width: 820px) {
+    .nav,
+    .header-cta { display: none; }
+    .menu-toggle { display: inline-flex; }
+  }
+
+  @media (max-width: 380px) {
+    .logo-text { display: none; }
+  }
+
+  /* ---------- Drawer ---------- */
+  .drawer {
+    /* Leaves a 20% peek of the page on phones as a tap-to-dismiss affordance */
+    --drawer-width: min(20rem, 80dvw);
+    --drawer-backdrop: 0;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: 0;
+    overflow: visible;
+  }
+
+  .drawer::backdrop {
+    background: #000;
+    opacity: calc(var(--drawer-backdrop) / 2);
+  }
+
+  .drawer-scroller {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--drawer-width) 100%;
+    overflow-x: scroll;
+    overscroll-behavior: none;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .drawer-scroller { scroll-behavior: smooth; }
+  }
+
+  /* Empty spacer = the "closed" snap stop */
+  .drawer-scroller::after {
+    content: '';
+    scroll-snap-align: end;
+    scroll-initial-target: nearest;
+  }
+
+  .drawer-sheet {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    height: 100svh;
+    padding: var(--space-4) var(--space-5) var(--space-6);
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+    color: var(--fg);
+    overflow-y: auto;
+    scroll-snap-align: start;
+    scrollbar-width: none;
+  }
+
+  .drawer-sheet:focus { outline: none; }
+
+  .drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: calc(-1 * var(--space-3));
+    border-radius: var(--radius-sm);
+  }
+
+  .drawer-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: var(--text-lg);
+    font-weight: 500;
+    color: var(--fg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .drawer-link[aria-current='page'] { color: var(--accent); }
+
+  .drawer-cta { margin-top: auto; }
+
+  /* Must be gated: unsupported browsers would otherwise apply the 0% keyframe (opaque backdrop) forever. */
+  @supports (animation-timeline: scroll()) {
+    @property --drawer-backdrop {
+      syntax: '<number>';
+      inherits: true;
+      initial-value: 0;
     }
 
-    .nav {
-      position: absolute;
-      top: var(--header-height);
-      left: 0;
-      right: 0;
-      background: var(--bg-header);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1rem 1.5rem;
-      display: none;
-      box-shadow: var(--shadow-md);
+    @keyframes fade-drawer-backdrop {
+      0%   { --drawer-backdrop: 1; }
+      100% { --drawer-backdrop: 0; }
     }
 
-    .nav.open {
-      display: block;
+    .drawer {
+      timeline-scope: --drawer-fade;
+      animation: fade-drawer-backdrop linear both;
+      animation-timeline: --drawer-fade;
     }
 
-    .nav-list {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
-    }
-
-    .nav-link {
-      display: block;
-      width: 100%;
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-    }
-
-    /* Hamburger → X */
-    .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+    .drawer-scroller {
+      scroll-timeline: --drawer-fade x;
     }
   }
 </style>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const nav    = document.getElementById('main-nav');
-  const header = document.getElementById('site-header');
+  // Re-bind on every client-side navigation: the header/drawer DOM is replaced each time.
+  document.addEventListener('astro:page-load', () => {
+    const drawer = document.getElementById('drawer');
+    const openBtn = document.getElementById('drawer-open');
+    if (!drawer || !openBtn) return;
+    const scroller = drawer.querySelector<HTMLElement>('.drawer-scroller')!;
+    const sheet = drawer.querySelector<HTMLElement>('.drawer-sheet')!;
+    const behind = () => document.querySelectorAll<HTMLElement>('#site-header, main, footer');
 
-  toggle?.addEventListener('click', () => {
-    const open = nav?.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
-  });
+    async function openDrawer() {
+      drawer!.showPopover();
+      if (!CSS.supports('scroll-initial-target', 'nearest')) {
+        // Start from the closed stop so the scroll below animates the sheet in.
+        scroller.scrollTo({ left: scroller.offsetWidth, behavior: 'instant' });
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      }
+      scroller.scrollTo({ left: 0, behavior: 'auto' });
+    }
 
-  // Close on nav link click (mobile)
-  nav?.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open');
-      toggle?.setAttribute('aria-expanded', 'false');
+    // Don't hidePopover() here: the observer hides it once the slide-out finishes.
+    const closeDrawer = () => scroller.scrollTo({ left: scroller.offsetWidth, behavior: 'auto' });
+
+    function onOpened() {
+      behind().forEach((el) => (el.inert = true));
+      openBtn!.setAttribute('aria-expanded', 'true');
+      sheet.focus();
+    }
+
+    function onClosed() {
+      if (!drawer!.matches(':popover-open')) return;
+      drawer!.hidePopover();
+      behind().forEach((el) => (el.inert = false));
+      openBtn!.setAttribute('aria-expanded', 'false');
+      openBtn!.focus();
+    }
+
+    const visible = 1 / window.innerWidth;
+    new IntersectionObserver(
+      (entries) => {
+        const entry = entries.at(-1)!;
+        if (entry.intersectionRatio < visible) onClosed();
+        if (entry.intersectionRatio === 1) onOpened();
+      },
+      { root: drawer, threshold: [visible, 1] },
+    ).observe(sheet);
+
+    if (!CSS.supports('animation-timeline: scroll()')) {
+      scroller.addEventListener('scroll', () => {
+        drawer.style.setProperty('--drawer-backdrop', String(1 - scroller.scrollLeft / sheet.offsetWidth));
+      });
+    }
+
+    openBtn.addEventListener('click', openDrawer);
+    drawer.addEventListener('click', (e) => {
+      const t = e.target as Element;
+      if (!sheet.contains(t) || t.closest('.drawer-close, a')) closeDrawer();
+    });
+    drawer.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
     });
   });
-
-  // Scrolled shadow
-  window.addEventListener('scroll', () => {
-    header?.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
 </script>

@@ -1,344 +1,272 @@
 ---
+import { Image } from 'astro:assets';
+
+const metrics = [
+  { value: '7+',  label: 'Years shipping Android' },
+  { value: '2M+', label: 'Users reached' },
+  { value: '10+', label: 'Apps & projects shipped' },
+  { value: '5',   label: 'Product companies' },
+];
+
+const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Architecture'];
 ---
 
-<section class="greeting section" id="home" aria-label="Introduction">
-  <div class="orb orb-1" aria-hidden="true"></div>
-  <div class="orb orb-2" aria-hidden="true"></div>
-  <div class="container greeting-inner">
-    <div class="greeting-text">
-      <div class="currently-badge">
-        <span class="badge-dot" aria-hidden="true"></span>
-        Currently at <strong>Dario</strong> · SDE-2
-      </div>
-      <p class="greeting-hello">Hi, I'm</p>
-      <h1 class="greeting-name"><span class="name-highlight">Vivek Panchal</span></h1>
-      <h2 class="greeting-role"><span class="role-highlight">Android Developer</span> &amp; SDE-2</h2>
-      <p class="greeting-bio">
-        Senior Android Developer with <strong>7+ years</strong> of experience building scalable mobile apps.
-        Currently SDE-2 at <strong>Dario</strong>, previously at <strong>Trustt</strong> &amp; <strong>StudyIQ</strong>.
-        Specialising in <strong>Kotlin, MVVM, Clean Architecture</strong>, and Jetpack — based in <strong>New Delhi, India</strong>.
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="hero-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        SDE-2 at <strong>Dario</strong>
+        <span class="sep" aria-hidden="true">/</span>
+        New Delhi, India
       </p>
-      <div class="greeting-stats" role="list" aria-label="Career highlights">
-        <div class="stat" role="listitem">
-          <span class="stat-num gradient-text">7+</span>
-          <span class="stat-label">Years Exp</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat" role="listitem">
-          <span class="stat-num gradient-text">10+</span>
-          <span class="stat-label">Projects</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat" role="listitem">
-          <span class="stat-num gradient-text">2M+</span>
-          <span class="stat-label">Users Reached</span>
-        </div>
-      </div>
-      <div class="greeting-actions">
-        <a href="/#contact" class="btn btn-primary">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i> Get in Touch
+
+      <h1 class="hero-title" id="hero-title">
+        <span class="hero-name">Vivek Panchal — Senior Android Engineer</span>
+        Building Android apps that scale to <span class="hl">millions of users.</span>
+      </h1>
+
+      <p class="hero-lead">
+        7+ years architecting production Kotlin apps with MVVM, Clean Architecture and Jetpack Compose —
+        across digital health at <strong>Dario</strong>, fintech at <strong>Trustt</strong> and ed-tech at <strong>StudyIQ</strong>.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#experience" class="btn btn-primary">
+          Explore my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="https://github.com/vivekpanchal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-          <i class="fab fa-github" aria-hidden="true"></i> GitHub
+        <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        <span class="hero-divider" aria-hidden="true"></span>
+        <a href="https://github.com/vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in new tab)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.2-3.1-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.1 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/vivekpanchal-developer/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in new tab)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
         </a>
       </div>
-      <ul class="greeting-socials social-links" aria-label="Social profiles">
-        <li><a href="https://www.linkedin.com/in/vivekpanchal-developer/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-        <li><a href="https://x.com/vivekpanchal64" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-        <li><a href="https://medium.com/@vivekpanchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Medium"><i class="fab fa-medium-m" aria-hidden="true"></i></a></li>
-        <li><a href="https://stackoverflow.com/users/7685845/vivek-panchal" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow"><i class="fab fa-stack-overflow" aria-hidden="true"></i></a></li>
-      </ul>
     </div>
 
-    <div class="greeting-image" aria-hidden="true">
-      <div class="avatar-ring">
-        <img
+    <aside class="hero-card" aria-label="Profile">
+      <div class="hero-card-top">
+        <Image
           src="https://avatars.githubusercontent.com/u/22134822?v=4"
-          alt="Vivek Panchal"
-          width="320"
-          height="320"
+          alt="Portrait of Vivek Panchal"
+          width={128}
+          height={128}
           loading="eager"
-          decoding="async"
+          class="hero-avatar"
         />
+        <div>
+          <p class="hero-card-name">Vivek Panchal</p>
+          <p class="hero-card-role">Senior Android Engineer</p>
+        </div>
       </div>
-      <div class="floating-badge badge-android">
-        <i class="fab fa-android" aria-hidden="true"></i> Android
-      </div>
-      <div class="floating-badge badge-kotlin">
-        <span aria-hidden="true">K</span> Kotlin
-      </div>
-    </div>
+      <p class="hero-card-label mono">Core stack</p>
+      <ul class="hero-stack">
+        {stack.map((s) => <li class="tag">{s}</li>)}
+      </ul>
+    </aside>
+
+    <dl class="hero-metrics">
+      {metrics.map((m) => (
+        <div class="metric">
+          <dt>{m.label}</dt>
+          <dd>{m.value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
 <style>
-  .greeting {
-    padding-top: calc(var(--header-height) + 3rem);
-    padding-bottom: 5rem;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
+  .hero {
     position: relative;
-    overflow: hidden;
+    padding: var(--space-9) 0 var(--space-8);
+    overflow: clip;
+    isolation: isolate;
   }
 
-  /* Gradient orbs */
-  .orb {
+  /* Faint engineering grid, faded out toward the edges */
+  .hero-grid-bg {
     position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
   }
 
-  .orb-1 {
-    top: -15%;
-    right: -8%;
-    width: 55vw;
-    height: 55vw;
-    max-width: 700px;
-    max-height: 700px;
-    background: radial-gradient(circle, rgba(108, 99, 255, 0.13) 0%, transparent 70%);
-  }
-
-  .orb-2 {
-    bottom: -10%;
-    left: -6%;
-    width: 38vw;
-    height: 38vw;
-    max-width: 480px;
-    max-height: 480px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.09) 0%, transparent 70%);
-  }
-
-  .greeting-inner {
+  .hero-inner {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 3rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
   }
 
-  /* Currently-at badge */
-  .currently-badge {
+  @media (min-width: 960px) {
+    .hero-inner {
+      grid-template-columns: minmax(0, 1fr) 320px;
+      column-gap: var(--space-8);
+      align-items: center;
+    }
+    .hero-metrics { grid-column: 1 / -1; }
+  }
+
+  .hero-status {
     display: inline-flex;
     align-items: center;
-    gap: 0.55rem;
-    padding: 0.4rem 1.1rem;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    margin-bottom: var(--space-5);
+    border: 1px solid var(--border);
     border-radius: var(--radius-pill);
-    background: rgba(108, 99, 255, 0.1);
-    border: 1px solid rgba(108, 99, 255, 0.25);
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.1rem;
+    background: var(--bg-elevated);
+    font-size: var(--text-sm);
+    color: var(--fg-2);
   }
 
-  .badge-dot {
+  .hero-status strong { color: var(--fg); font-weight: 600; }
+  .sep { color: var(--border-strong); }
+
+  .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #22c55e;
-    flex-shrink: 0;
-    animation: pulse-dot 2s ease-in-out infinite;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
   }
 
-  @keyframes pulse-dot {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
-    50%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  .hero-title {
+    font-size: var(--text-hero);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.04;
+    margin-bottom: var(--space-5);
+    max-width: 16ch;
   }
 
-  .greeting-hello {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-bottom: 0.2rem;
-    letter-spacing: 0.02em;
-  }
-
-  .greeting-name {
-    font-family: var(--font-body);
-    font-size: clamp(3rem, 9vw, 5.5rem);
-    margin-bottom: 0.4rem;
-    line-height: 1.0;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .name-highlight {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .greeting-role {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    color: var(--text-secondary);
-    font-weight: 400;
-    margin-bottom: 1.25rem;
-  }
-
-  .role-highlight {
-    color: var(--color-primary);
-    font-weight: 600;
-    position: relative;
-  }
-
-  .role-highlight::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-    transform-origin: left;
-    animation: underline-reveal 0.8s ease 0.5s both;
-  }
-
-  @keyframes underline-reveal {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-  }
-
-  .greeting-bio {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    max-width: 520px;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Stats row */
-  .greeting-stats {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.1rem 0;
-    margin-bottom: 1.75rem;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-
-  .stat-num {
-    font-size: 1.65rem;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+  .hero-name {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--text-base);
     font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.4;
+    color: var(--fg-2);
   }
 
-  .stat-divider {
-    width: 1px;
-    height: 36px;
-    background: var(--border-color);
-    flex-shrink: 0;
+  .hl { color: var(--fg-muted); }
+
+  .hero-lead {
+    font-size: var(--text-lg);
+    color: var(--fg-2);
+    max-width: 58ch;
+    margin-bottom: var(--space-6);
   }
 
-  .greeting-actions {
+  .hero-lead strong { color: var(--fg); font-weight: 600; }
+
+  .hero-actions {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    align-items: center;
+    gap: var(--space-3);
   }
 
-  /* Avatar */
-  .greeting-image {
-    position: relative;
-    flex-shrink: 0;
+  .hero-divider {
+    width: 1px;
+    height: 24px;
+    margin-inline: var(--space-1);
+    background: var(--border);
   }
 
-  .avatar-ring {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    padding: 6px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  @media (max-width: 480px) {
+    .hero-actions .btn { flex: 1 1 100%; }
+    .hero-divider { display: none; }
+  }
+
+  /* Profile card */
+  .hero-card {
+    padding: var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
     box-shadow: var(--shadow-lg);
   }
 
-  .avatar-ring img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    background: var(--bg-card);
-  }
-
-  .floating-badge {
-    position: absolute;
-    padding: 0.4rem 0.85rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.8rem;
-    font-weight: 700;
+  .hero-card-top {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    box-shadow: var(--shadow-md);
-    animation: float 3s ease-in-out infinite;
+    gap: var(--space-4);
+    padding-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border);
   }
 
-  .badge-android {
-    background: #3ddc84;
-    color: #000;
-    bottom: 20px;
-    left: -20px;
-    animation-delay: 0s;
+  .hero-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg-subtle);
   }
 
-  .badge-kotlin {
-    background: #A97BFF;
-    color: #fff;
-    top: 20px;
-    right: -20px;
-    animation-delay: 1.5s;
+  .hero-card-name { font-weight: 600; }
+  .hero-card-role { font-size: var(--text-sm); color: var(--fg-2); }
+
+  .hero-card-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-muted);
+    margin-bottom: var(--space-3);
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-8px); }
+  .hero-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
   }
 
-  @media (max-width: 900px) {
-    .greeting-inner {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
+  /* Metrics strip — hairline-divided cells */
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--border);
+    overflow: hidden;
+  }
 
-    .greeting-bio {
-      margin-inline: auto;
-    }
+  @media (min-width: 720px) {
+    .hero-metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
 
-    .greeting-actions,
-    .greeting-socials {
-      justify-content: center;
-    }
+  .metric {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-1);
+    padding: var(--space-5);
+    background: var(--bg);
+  }
 
-    .greeting-image {
-      margin-inline: auto;
-    }
+  .metric dd {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
 
-    .avatar-ring {
-      width: 240px;
-      height: 240px;
-    }
-
-    .greeting {
-      min-height: unset;
-      padding-top: 5rem;
-    }
+  .metric dt {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
   }
 </style>

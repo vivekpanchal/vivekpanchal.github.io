@@ -57,7 +57,7 @@ const contacts = [
 <style>
   .contact-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 3rem;
     align-items: center;
   }
@@ -92,7 +92,7 @@ const contacts = [
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(108, 99, 255, 0.1);
+    background: var(--accent-soft);
     color: var(--color-primary);
     display: flex;
     align-items: center;
@@ -131,7 +131,7 @@ const contacts = [
 
   @media (max-width: 768px) {
     .contact-inner {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>
