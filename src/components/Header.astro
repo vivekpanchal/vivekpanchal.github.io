@@ -10,10 +10,14 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = currentPath === '/';
 const isCurrent = (href: string) => href === currentPath;
+// On the home page section links must be same-document fragments for scrollspy (:target-current).
+const navHref = (href: string) => (isHome && href.startsWith('/#') ? href.slice(1) : href);
 ---
 
 <header class="header" id="site-header">
+  <span class="header-edge" aria-hidden="true"></span>
   <div class="container header-inner">
     <a href="/" class="logo" aria-label="Vivek Panchal — home">
       <span class="logo-mark" aria-hidden="true">VP</span>
@@ -24,7 +28,7 @@ const isCurrent = (href: string) => href === currentPath;
       <ul class="nav-list">
         {navLinks.map(({ href, label }) => (
           <li>
-            <a href={href} class="nav-link" aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
+            <a href={navHref(href)} class="nav-link" aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>
           </li>
         ))}
       </ul>
@@ -83,6 +87,23 @@ const isCurrent = (href: string) => href === currentPath;
     border-bottom: 1px solid var(--border);
     backdrop-filter: saturate(180%) blur(12px);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
+    container: site-header / scroll-state;
+  }
+
+  /* Soft shadow only once the header is actually stuck over content (progressive enhancement:
+     a scroll-state query can't style the container itself, so a child carries the shadow). */
+  .header-edge {
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    box-shadow: 0 6px 16px -6px hsl(var(--shadow-color) / 0.35);
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+  }
+
+  @container site-header scroll-state(stuck: top) {
+    .header-edge { opacity: 1; }
   }
 
   .header-inner {
@@ -122,9 +143,11 @@ const isCurrent = (href: string) => href === currentPath;
   .nav-list {
     display: flex;
     gap: var(--space-1);
+    scroll-target-group: auto;
   }
 
   .nav-link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     min-height: 36px;
@@ -140,6 +163,22 @@ const isCurrent = (href: string) => href === currentPath;
     color: var(--fg);
     background: var(--bg-subtle);
   }
+
+  /* Scrollspy indicator: underline + colour, never colour alone */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    inset: auto var(--space-3) 2px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    scale: 0 1;
+    transition: scale var(--ease-spring-duration) var(--ease-spring);
+  }
+
+  /* :is() keeps the rule valid where :target-current is unknown */
+  .nav-link:is(:target-current, .\:target-current) { color: var(--fg); }
+  .nav-link:is(:target-current, .\:target-current)::after { scale: 1 1; }
 
   .header-actions {
     display: flex;
@@ -293,6 +332,44 @@ const isCurrent = (href: string) => href === currentPath;
 </style>
 
 <script>
+  // Scrollspy: native :target-current where supported, IntersectionObserver otherwise.
+  // aria-current mirrors the visual state for assistive tech.
+  let spy: AbortController | undefined;
+  document.addEventListener('astro:page-load', () => {
+    spy?.abort();
+    spy = new AbortController();
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('.nav-list a[href^="#"]')];
+    if (!links.length) return;
+    const mark = (active: Element | null) =>
+      links.forEach((l) => l.setAttribute('aria-current', String(l === active)));
+
+    if (CSS.supports('scroll-target-group: auto')) {
+      // :target-current settles a frame after scrollend, so read it on the next frame.
+      const sync = () =>
+        requestAnimationFrame(() => mark(document.querySelector('.nav-list a:target-current')));
+      sync();
+      document.addEventListener('scrollend', sync, { signal: spy.signal });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const active = links.find((l) => l.hash === `#${entry.target.id}`) ?? null;
+          links.forEach((l) => l.classList.toggle(':target-current', l === active));
+          mark(active);
+        }
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    );
+    links.forEach((l) => {
+      const target = document.getElementById(l.hash.slice(1));
+      if (target) observer.observe(target);
+    });
+    spy.signal.addEventListener('abort', () => observer.disconnect());
+  });
+
   // Re-bind on every client-side navigation: the header/drawer DOM is replaced each time.
   document.addEventListener('astro:page-load', () => {
     const drawer = document.getElementById('drawer');

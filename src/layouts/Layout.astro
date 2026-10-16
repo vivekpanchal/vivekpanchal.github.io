@@ -43,6 +43,28 @@ const props = Astro.props;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Font Awesome (~300kB with fonts) is only used below the fold: request it after load so it
+         never competes with first paint. Client-side navigation swaps <head>, so re-add it after each swap. -->
+    <script is:inline>
+      (function () {
+        function addIcons() {
+          if (document.getElementById('fa-css')) return;
+          var l = document.createElement('link');
+          l.id = 'fa-css';
+          l.rel = 'stylesheet';
+          l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+          l.crossOrigin = 'anonymous';
+          l.referrerPolicy = 'no-referrer';
+          document.head.appendChild(l);
+        }
+        // This page can paint after `load`; two frames guarantees the request starts after first paint.
+        addEventListener('load', function () {
+          requestAnimationFrame(function () { requestAnimationFrame(addIcons); });
+        });
+        document.addEventListener('astro:after-swap', addIcons);
+      })();
+    </script>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
     <ClientRouter />
   </head>
   <body>

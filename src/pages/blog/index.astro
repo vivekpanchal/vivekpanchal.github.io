@@ -50,7 +50,7 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
                 {Math.ceil((post.body?.split(' ').length ?? 0) / 200)} min read
               </span>
             </div>
-            <h2 class="post-title">
+            <h2 class="post-title" transition:name={`post-title-${post.id}`}>
               <a href={`/blog/${post.id}`}>{post.data.title}</a>
             </h2>
             <p class="post-desc">{post.data.description}</p>
@@ -64,13 +64,6 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
   </div>
 </Layout>
 
-<!-- Font Awesome -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
 
 <style>
   .blog-index {
@@ -129,10 +122,11 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
   }
 
   .tag-btn:hover,
+  /* Same treatment as the project filter chips; white on the green accent failed AA */
   .tag-btn.active {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
   }
 
   .posts-list {

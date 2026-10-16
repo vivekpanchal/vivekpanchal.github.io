@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Vivek Panchal — Senior Android Developer | SDE-2 at Dario',
-  description = 'Vivek Panchal — Senior Android Developer with 7+ years of experience. SDE-2 at Dario. Expert in Kotlin, Java, MVVM, Jetpack, Dagger2, Coroutines. Previously at Trustt & StudyIQ. Based in New Delhi, India.',
+  title = 'Vivek Panchal — Senior Android Engineer | SDE-2 at DarioHealth',
+  description = 'Vivek Panchal — Google Certified Senior Android Engineer with 8+ years of experience. SDE-2 at DarioHealth; previously Trustt and StudyIQ. Kotlin, Jetpack Compose, MVVM/MVI, Clean Architecture, Hilt, Coroutines. Based in Delhi, India.',
   image = '/og-image.png',
   url = Astro.url.href,
   type = 'website',
@@ -33,7 +33,7 @@ const canonicalUrl = url;
   'Vivek Panchal', 'Android Developer', 'Senior Android Developer', 'SDE-2',
   'Kotlin', 'Java', 'MVVM', 'Clean Architecture', 'Jetpack Compose',
   'Dagger2', 'Hilt', 'Coroutines', 'RxJava', 'Retrofit', 'Room DB',
-  'Dario', 'Trustt', 'StudyIQ', 'New Delhi', 'India', 'Software Engineer',
+  'DarioHealth', 'Trustt', 'StudyIQ', 'Jetpack Compose', 'MVI', 'New Delhi', 'India', 'Software Engineer',
   'Mobile Developer', 'Android SDK', 'Firebase', 'GitHub',
   ...tags
 ].join(', ')} />
@@ -92,7 +92,13 @@ const canonicalUrl = url;
   "jobTitle": "Senior Android Engineer (SDE-2)",
   "worksFor": {
     "@type": "Organization",
-    "name": "Dario"
+    "name": "DarioHealth"
+  },
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "Google Certified Android Developer",
+    "credentialCategory": "certification",
+    "recognizedBy": { "@type": "Organization", "name": "Google" }
   },
   "knowsAbout": ["Android Development", "Kotlin", "Jetpack Compose", "Java", "MVVM", "Clean Architecture", "Jetpack", "Dagger2", "Hilt", "Coroutines", "RxJava", "Firebase", "Room DB"],
   "hasOccupation": {
@@ -102,7 +108,7 @@ const canonicalUrl = url;
       "@type": "City",
       "name": "New Delhi"
     },
-    "experienceRequirements": "7+ years"
+    "experienceRequirements": "8+ years"
   },
   "description": description,
   "image": new URL(image, Astro.site),

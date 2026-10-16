@@ -3,6 +3,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://vivekpanchal.dev',
+  // Two small CSS files were the only render-blocking requests; inline them.
+  build: {
+    inlineStylesheets: 'always',
+  },
   image: {
     domains: ['avatars.githubusercontent.com'],
   },
@@ -13,7 +17,8 @@ export default defineConfig({
   ],
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      // github-dark's comment colour is 3:1 on its background; -default meets AA
+      theme: 'github-dark-default',
     },
   },
 });

@@ -26,7 +26,7 @@ const formatDate = (date: Date) =>
               <span class="tag">{tag}</span>
             ))}
           </div>
-          <h3 class="post-title">
+          <h3 class="post-title" transition:name={`post-title-${post.id}`}>
             <a href={`/blog/${post.id}`}>{post.data.title}</a>
           </h3>
           <p class="post-desc">{post.data.description}</p>
@@ -36,7 +36,7 @@ const formatDate = (date: Date) =>
               {formatDate(post.data.pubDate)}
             </time>
             <a href={`/blog/${post.id}`} class="read-more">
-              Read more <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              Read more<span class="sr-only">: {post.data.title}</span> <i class="fas fa-arrow-right" aria-hidden="true"></i>
             </a>
           </footer>
         </article>

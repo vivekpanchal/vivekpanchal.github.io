@@ -1,71 +1,99 @@
 ---
-// Grouped by company so promotions read as growth, not job-hopping.
-// Impact bullets restate existing claims — swap in hard numbers (crash-free %, ANR, cold start, MAU) when you have them.
+// Source: resume (2026) + Cypress letter of experience. `stats` render as headline impact chips.
 const experiences = [
   {
-    company: 'Dario',
-    domain: 'Digital health',
-    location: 'New Delhi, India',
+    company: 'DarioHealth',
+    domain: 'Healthcare / Wellness',
+    location: 'Bangalore, India',
     current: true,
     roles: [{ title: 'SDE-2 — Android', period: 'Nov 2024 – Present' }],
-    summary: 'Leading Android development for a digital health platform.',
+    summary: 'Android engineer on a digital health platform serving the US market.',
+    stats: [],
     impact: [
-      'Architect scalable features on MVVM + Clean Architecture with Hilt for DI.',
-      'Drive app-wide performance improvements.',
-      'Partner cross-functionally with product and design on delivery.',
+      'Led the app-wide rebrand from Twill to Dario Mind — UI, branding assets and user flows aligned to the new design system.',
+      'Delivered performance enhancements and full WCAG accessibility compliance for the US market.',
     ],
-    stack: ['Kotlin', 'MVVM', 'Clean Architecture', 'Hilt', 'Jetpack'],
+    stack: ['Kotlin', 'Android SDK', 'MVVM', 'WCAG'],
   },
   {
     company: 'Trustt',
-    domain: 'Fintech',
+    note: 'formerly Novopay',
+    domain: 'Fintech / Banking',
     location: 'Bangalore, India',
-    roles: [
-      { title: 'SDE-2 — Android', period: 'Jun 2023 – Nov 2024' },
-      { title: 'SDE — Android', period: 'Jun 2022 – May 2023' },
+    roles: [{ title: 'SDE-2 — Android', period: 'Jun 2022 – Oct 2024' }],
+    summary: 'Owned stability, architecture and delivery for a banking app.',
+    stats: [
+      { value: '−75%', label: 'app crashes' },
+      { value: '−70%', label: 'bugs' },
+      { value: '−80%', label: 'network latency' },
     ],
-    summary: 'Promoted from SDE to SDE-2 within a year; owned core Android product features.',
     impact: [
-      'Led key feature development and improved the app architecture.',
-      'Drove adoption of Kotlin Coroutines and modern Jetpack components.',
-      'Mentored junior engineers.',
-      'Implemented complex UI flows, API integrations and performance optimisations.',
+      'Optimised the crash-reporting system and data management, cutting app crashes by 75%.',
+      'Led a complete MVC → MVVM migration, reducing bugs by 70% and improving maintainability.',
+      'Introduced API call optimisations and caching, reducing network latency by 80%.',
+      'Established CI/CD pipelines, increasing deployment frequency and automating test workflows.',
     ],
-    stack: ['Kotlin', 'Coroutines', 'Jetpack', 'MVVM', 'REST APIs'],
+    stack: ['Kotlin', 'MVVM', 'Coroutines & Flow', 'Caching', 'CI/CD'],
   },
   {
-    company: 'StudyIQ Education',
-    domain: 'Ed-tech · millions of students',
+    company: 'Cypress',
+    note: 'Mobsquad',
+    freelance: true,
+    domain: 'Contract · multiple client projects',
+    location: 'Remote · Yerevan, Armenia',
+    roles: [{ title: 'Sr. Android Developer', period: 'Jan 2022 – May 2022' }],
+    summary: 'Contract Android engineering for international clients.',
+    stats: [],
+    impact: [
+      'Built and deployed mobile apps end to end across multiple client projects.',
+      'Applied MVVM, Dagger Hilt and Room with advanced threading and app-performance optimisation.',
+      'Built advanced UI following Material Design guidelines.',
+    ],
+    stack: ['Kotlin', 'MVVM', 'Hilt', 'Room', 'Material Design'],
+  },
+  {
+    company: 'StudyIQ',
+    domain: 'EdTech · millions of students',
     location: 'Delhi, India',
     roles: [{ title: 'Senior Android Developer', period: 'Jul 2020 – Feb 2022' }],
-    summary: 'Built and maintained the StudyIQ app used by millions of students across India.',
+    summary: 'Re-architected the StudyIQ app used by millions of students.',
+    stats: [{ value: '−30%', label: 'development time' }],
     impact: [
-      'Built live video streaming on ExoPlayer.',
-      'Shipped offline content downloads backed by Room.',
-      'Owned performance-critical features at scale.',
+      'Revamped the StudyIQ app architecture with Kotlin, MVVM and Jetpack, reducing development time by 30%.',
+      'Led the PocketNews migration from MVC to MVVM with Dagger Hilt for better performance and maintainability.',
+      'Implemented secure data-management protocols to protect user data.',
+      'Owned unit and UI testing for release quality.',
     ],
-    stack: ['ExoPlayer', 'Live Streaming', 'Room', 'Android SDK'],
+    stack: ['Kotlin', 'MVVM', 'Jetpack', 'Hilt', 'ExoPlayer'],
   },
   {
-    company: 'Broad Strokes Ventures',
-    domain: 'Product studio',
-    location: 'Delhi, India',
-    roles: [{ title: 'Senior Android Developer', period: 'Aug 2019 – Apr 2020' }],
-    summary: 'Built Android applications end-to-end.',
+    company: 'Broad Stroke Group',
+    domain: 'Agri-Tech',
+    location: 'New Delhi, India',
+    roles: [{ title: 'Android Developer', period: 'Aug 2019 – Apr 2020' }],
+    summary: 'Turned an agri-tech app around on retention and data visualisation.',
+    stats: [{ value: '+80%', label: 'user retention' }],
     impact: [
-      'Owned architecture decisions and SDK integrations.',
-      'Delivered production-ready mobile features.',
+      'Improved user retention by 80% through targeted bug fixes, UI/UX improvements and security hardening.',
+      'Built advanced graph and map features for data visualisation.',
+      'Partnered with product managers on estimation and delivery timelines.',
     ],
-    stack: ['Java', 'Android SDK'],
+    stack: ['Java', 'Maps', 'Data visualisation'],
   },
   {
     company: 'Stackfusion',
-    domain: 'Software services',
+    note: 'Parkzap Labs',
+    domain: 'AI/ML · IoT',
     location: 'Gurugram, India',
     roles: [{ title: 'Android Developer', period: 'Jul 2018 – Aug 2019' }],
-    summary: 'Started my career building and shipping Android apps across the full mobile lifecycle.',
-    impact: [],
-    stack: ['Java', 'REST APIs'],
+    summary: 'On-device computer vision and IoT products.',
+    stats: [{ value: '+95%', label: 'OCR accuracy' }],
+    impact: [
+      'Integrated TensorFlow Lite and OpenCV for licence-plate detection, increasing OCR accuracy by 95%.',
+      'Contributed to IoT products including RFID sensors and automated printers.',
+      'Mentored junior developers and drove cross-functional work on Android networking.',
+    ],
+    stack: ['TensorFlow Lite', 'OpenCV', 'IoT', 'Java'],
   },
 ];
 ---
@@ -74,8 +102,8 @@ const experiences = [
   <div class="container">
     <header class="section-header reveal">
       <p class="section-num">01 / Experience</p>
-      <h2 class="section-title" id="experience-title">7+ years, five companies, one craft.</h2>
-      <p class="section-subtitle">From first app to leading Android architecture — digital health, fintech and ed-tech at scale.</p>
+      <h2 class="section-title" id="experience-title">8+ years, six teams, five industries.</h2>
+      <p class="section-subtitle">From on-device ML to banking-grade stability — healthcare, fintech, ed-tech, agri-tech and AI/ML.</p>
     </header>
 
     <ol class="timeline">
@@ -88,7 +116,9 @@ const experiences = [
               <div>
                 <h3 class="tl-company">
                   {exp.company}
+                  {exp.note && <span class="tl-note">({exp.note})</span>}
                   {exp.current && <span class="tl-badge">Current</span>}
+                  {exp.freelance && <span class="tl-badge tl-badge-muted">Freelance</span>}
                 </h3>
                 <p class="tl-domain">{exp.domain} · {exp.location}</p>
               </div>
@@ -104,6 +134,14 @@ const experiences = [
             </ul>
 
             <p class="tl-summary">{exp.summary}</p>
+
+            {exp.stats.length > 0 && (
+              <ul class="tl-stats" aria-label="Key results">
+                {exp.stats.map((st) => (
+                  <li><strong>{st.value}</strong> {st.label}</li>
+                ))}
+              </ul>
+            )}
 
             {exp.impact.length > 0 && (
               <details class="tl-details" open={i < 2}>
@@ -221,6 +259,43 @@ const experiences = [
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  .tl-note {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--fg-muted);
+  }
+
+  .tl-badge-muted {
+    background: var(--bg-subtle);
+    color: var(--fg-2);
+  }
+
+  .tl-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .tl-stats li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+
+  .tl-stats strong {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
   }
 
   .tl-domain {

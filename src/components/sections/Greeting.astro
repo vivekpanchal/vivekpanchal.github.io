@@ -2,13 +2,13 @@
 import { Image } from 'astro:assets';
 
 const metrics = [
-  { value: '7+',  label: 'Years shipping Android' },
-  { value: '2M+', label: 'Users reached' },
-  { value: '10+', label: 'Apps & projects shipped' },
-  { value: '5',   label: 'Product companies' },
+  { value: '8+',   label: 'Years shipping Android' },
+  { value: '2M+',  label: 'Users reached' },
+  { value: '−75%', label: 'App crashes at Trustt' },
+  { value: '5',    label: 'Industries' },
 ];
 
-const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Architecture'];
+const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines & Flow', 'Hilt', 'Clean Architecture', 'MVI'];
 ---
 
 <section class="hero" id="home" aria-labelledby="hero-title">
@@ -16,24 +16,24 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
 
   <div class="container hero-inner">
     <div class="hero-copy">
-      <p class="hero-status">
+      <p class="hero-status" style="--i:1">
         <span class="status-dot" aria-hidden="true"></span>
-        SDE-2 at <strong>Dario</strong>
+        SDE-2 at <strong>DarioHealth</strong>
         <span class="sep" aria-hidden="true">/</span>
-        New Delhi, India
+        Delhi, India
       </p>
 
-      <h1 class="hero-title" id="hero-title">
+      <h1 class="hero-title" id="hero-title" style="--i:2">
         <span class="hero-name">Vivek Panchal — Senior Android Engineer</span>
         Building Android apps that scale to <span class="hl">millions of users.</span>
       </h1>
 
-      <p class="hero-lead">
-        7+ years architecting production Kotlin apps with MVVM, Clean Architecture and Jetpack Compose —
-        across digital health at <strong>Dario</strong>, fintech at <strong>Trustt</strong> and ed-tech at <strong>StudyIQ</strong>.
+      <p class="hero-lead" style="--i:3">
+        Google Certified Android Developer with 8+ years architecting production Kotlin apps —
+        healthcare at <strong>DarioHealth</strong>, fintech at <strong>Trustt</strong>, ed-tech at <strong>StudyIQ</strong>, plus agri-tech and on-device ML.
       </p>
 
-      <div class="hero-actions">
+      <div class="hero-actions" style="--i:4">
         <a href="#experience" class="btn btn-primary">
           Explore my work
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -62,6 +62,10 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
         <div>
           <p class="hero-card-name">Vivek Panchal</p>
           <p class="hero-card-role">Senior Android Engineer</p>
+          <p class="hero-card-cert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="m8.2 13.9-1.2 7.1 5-3 5 3-1.2-7.1"/></svg>
+            Google Certified Android Developer
+          </p>
         </div>
       </div>
       <p class="hero-card-label mono">Core stack</p>
@@ -71,8 +75,8 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
     </aside>
 
     <dl class="hero-metrics">
-      {metrics.map((m) => (
-        <div class="metric">
+      {metrics.map((m, i) => (
+        <div class="metric" style={`--i:${i + 1}`}>
           <dt>{m.label}</dt>
           <dd>{m.value}</dd>
         </div>
@@ -100,6 +104,46 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  /* ---------- Entrance: one-time stagger on load ----------
+     sibling-index() drives the delay; the static --i (set in markup) is the fallback
+     for browsers without it, so no JS is needed. The h1 is the LCP element, so it
+     only rises — fading it from opacity 0 would delay LCP. */
+  @keyframes hero-fade-up {
+    from { opacity: 0; translate: 0 14px; }
+  }
+
+  @keyframes hero-rise {
+    from { translate: 0 10px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-copy > *,
+    .hero-card,
+    .metric {
+      --stagger: 80ms;
+      animation: hero-fade-up 700ms var(--ease-out) backwards;
+      animation-delay: calc(var(--i, 0) * var(--stagger));
+      animation-delay: calc(sibling-index() * var(--stagger));
+    }
+
+    .hero-copy > .hero-title { animation-name: hero-rise; }
+
+    /* Card and metrics follow the copy */
+    .hero-card { animation-delay: 360ms; }
+    .metric {
+      animation-delay: calc(420ms + var(--i, 0) * 60ms);
+      animation-delay: calc(420ms + sibling-index() * 60ms);
+    }
+
+    .status-dot::after { animation: status-pulse 2.4s var(--ease-out) infinite; }
+  }
+
+  /* Compositor-only ripple (transform + opacity) */
+  @keyframes status-pulse {
+    0%   { scale: 1; opacity: 0.6; }
+    70%, 100% { scale: 2.6; opacity: 0; }
   }
 
   .hero-inner {
@@ -135,11 +179,21 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
   .sep { color: var(--border-strong); }
 
   .status-dot {
+    position: relative;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .status-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent);
+    opacity: 0;
   }
 
   .hero-title {
@@ -219,6 +273,17 @@ const stack = ['Kotlin', 'Jetpack Compose', 'Coroutines', 'Hilt', 'Clean Archite
 
   .hero-card-name { font-weight: 600; }
   .hero-card-role { font-size: var(--text-sm); color: var(--fg-2); }
+
+  .hero-card-cert {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--accent);
+  }
+
+  .hero-card-cert svg { width: 14px; height: 14px; }
 
   .hero-card-label {
     font-size: var(--text-xs);

@@ -59,6 +59,9 @@
   --radius-lg: 16px;
   --radius-pill: 9999px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Gentle spring with one small overshoot, for hover nudges on transforms only */
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%, 1.017 19.4%, 1.067, 1.099 24.3%, 1.104 26.3%, 1.093 29.1%, 1.057 33.1%, 1.008 39.1%, 0.991 43.6%, 0.983 48.1%, 0.996 63.2%, 1);
+  --ease-spring-duration: 600ms;
   --duration: 200ms;
 
   --header-height: 64px;
@@ -140,6 +143,8 @@ body {
   color: var(--fg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* Scale fallback fonts to Inter's x-height (1118/2048) so the swap doesn't reflow text */
+  font-size-adjust: ex-height 0.546;
   overflow-x: clip;
   accent-color: var(--accent);
 }
@@ -255,7 +260,16 @@ p { text-wrap: pretty; }
   transition: background-color var(--transition), border-color var(--transition), color var(--transition), translate var(--transition);
 }
 
-.btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+.btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: translate var(--ease-spring-duration) var(--ease-spring);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn:hover svg:last-child { translate: 3px 0; }
+}
 
 .btn-primary {
   background: var(--fg);

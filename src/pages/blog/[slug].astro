@@ -44,7 +44,7 @@ const readTime = Math.ceil(wordCount / 200);
         <ul class="post-tags" aria-label="Tags">
           {post.data.tags.map(tag => <li><span class="tag">{tag}</span></li>)}
         </ul>
-        <h1 class="post-title">{post.data.title}</h1>
+        <h1 class="post-title" transition:name={`post-title-${post.id}`}>{post.data.title}</h1>
         <p class="post-desc">{post.data.description}</p>
         <div class="post-meta">
           <div class="author">
@@ -121,13 +121,6 @@ const readTime = Math.ceil(wordCount / 200);
   </article>
 </Layout>
 
-<!-- Font Awesome -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
 
 <style>
   .blog-post {
@@ -424,7 +417,7 @@ const readTime = Math.ceil(wordCount / 200);
 
   .share-btn.linkedin {
     background: rgba(0, 119, 181, 0.1);
-    color: #0077b5;
+    color: var(--fg); /* brand blue fails AA as text on the dark theme */
     border: 1px solid rgba(0, 119, 181, 0.2);
   }
 
