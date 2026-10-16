@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import SEO from '../components/SEO.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -20,12 +21,20 @@ const props = Astro.props;
 <html lang="en">
   <head>
     <SEO {...props} />
-    <title>{props.title ?? 'Vivek Panchal — Android Developer'}</title>
-    <!-- Prevent FOUC: apply theme before paint (dark default) -->
+    <title>{props.title ?? 'Vivek Panchal — Senior Android Engineer'}</title>
+    <!-- "light dark" = follow the OS. ThemeToggle pins "light" or "dark". -->
+    <meta name="color-scheme" content="light dark" />
+    <!-- Runs before paint to avoid a theme flash; re-applied after each client-side navigation. -->
     <script is:inline>
       (function () {
-        var theme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', theme);
+        function apply() {
+          try {
+            var s = localStorage.getItem('theme');
+            if (s === 'light' || s === 'dark') document.querySelector('meta[name="color-scheme"]').content = s;
+          } catch (e) {}
+        }
+        apply();
+        document.addEventListener('astro:after-swap', apply);
       })();
     </script>
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -34,19 +43,41 @@ const props = Astro.props;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Font Awesome (~300kB with fonts) is only used below the fold: request it after load so it
+         never competes with first paint. Client-side navigation swaps <head>, so re-add it after each swap. -->
+    <script is:inline>
+      (function () {
+        function addIcons() {
+          if (document.getElementById('fa-css')) return;
+          var l = document.createElement('link');
+          l.id = 'fa-css';
+          l.rel = 'stylesheet';
+          l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+          l.crossOrigin = 'anonymous';
+          l.referrerPolicy = 'no-referrer';
+          document.head.appendChild(l);
+        }
+        // This page can paint after `load`; two frames guarantees the request starts after first paint.
+        addEventListener('load', function () {
+          requestAnimationFrame(function () { requestAnimationFrame(addIcons); });
+        });
+        document.addEventListener('astro:after-swap', addIcons);
+      })();
+    </script>
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
+    <ClientRouter />
   </head>
   <body>
-    <!-- Scroll progress -->
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <Header />
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />
 
-    <!-- Back to top -->
     <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="18 15 12 9 6 15"/>
       </svg>
     </button>
@@ -54,33 +85,35 @@ const props = Astro.props;
 </html>
 
 <style>
+  main:focus { outline: none; }
+
   .back-to-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: var(--space-5);
+    right: var(--space-5);
     width: 44px;
     height: 44px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: #fff;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    color: var(--fg);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow-md);
     opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition), transform var(--transition);
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
     z-index: 99;
   }
 
   .back-to-top.visible {
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
   }
 
   .back-to-top:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-3px);
+    background: var(--bg-subtle);
   }
 
   .back-to-top svg {
@@ -90,31 +123,15 @@ const props = Astro.props;
 </style>
 
 <script>
-  // Back to top
-  const btn = document.getElementById('back-to-top');
+  // Module scripts run once even with client-side navigation, so look elements up lazily.
   window.addEventListener('scroll', () => {
-    btn?.classList.toggle('visible', window.scrollY > 400);
-  }, { passive: true });
-  btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // Scroll reveal
-  const revealObserver = new IntersectionObserver(
-    (entries) => entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        revealObserver.unobserve(e.target);
-      }
-    }),
-    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // Scroll progress bar
-  const progressBar = document.getElementById('scroll-progress');
-  window.addEventListener('scroll', () => {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-    if (progressBar) progressBar.style.width = pct + '%';
+    document.getElementById('back-to-top')?.classList.toggle('visible', window.scrollY > 600);
   }, { passive: true });
 
+  document.addEventListener('click', (e) => {
+    if ((e.target as Element).closest?.('#back-to-top')) {
+      const smooth = matchMedia('(prefers-reduced-motion: no-preference)').matches;
+      window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+    }
+  });
 </script>

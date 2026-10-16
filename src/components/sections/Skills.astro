@@ -10,31 +10,31 @@ const skillCategories = [
     title: 'Android',
     icon: 'fab fa-android',
     color: '#3ddc84',
-    skills: ['Android SDK', 'MVVM', 'Jetpack', 'Room DB', 'LiveData', 'ViewModel', 'Navigation', 'WorkManager'],
+    skills: ['Android SDK', 'Jetpack Compose', 'Jetpack', 'Room DB', 'ViewModel', 'Navigation Components', 'WorkManager', 'TensorFlow Lite'],
   },
   {
     title: 'Libraries & DI',
     icon: 'fas fa-cubes',
     color: '#f59e0b',
-    skills: ['Dagger2', 'Hilt', 'RxJava', 'Coroutines', 'Retrofit', 'OkHttp', 'Glide', 'Picasso'],
+    skills: ['Dagger Hilt', 'Dagger2', 'Coroutines & Flow', 'RxJava', 'Retrofit', 'OkHttp', 'Glide', 'OpenCV'],
   },
   {
     title: 'Tools & Platforms',
     icon: 'fas fa-tools',
     color: '#06b6d4',
-    skills: ['Git', 'GitHub', 'Gradle', 'Firebase', 'IBM Watson', 'Google Cloud', 'JIRA', 'Android Studio'],
+    skills: ['Git', 'GitHub', 'CI/CD', 'Gradle', 'Firebase', 'Google Cloud', 'IBM Watson', 'JIRA'],
   },
   {
     title: 'Architecture',
     icon: 'fas fa-layer-group',
     color: '#a855f7',
-    skills: ['MVVM', 'MVC', 'Clean Architecture', 'Repository Pattern', 'SOLID Principles'],
+    skills: ['MVVM', 'MVI', 'Clean Architecture', 'Repository Pattern', 'Multi-threading', 'SOLID Principles'],
   },
   {
     title: 'Testing',
     icon: 'fas fa-vial',
     color: '#ec4899',
-    skills: ['JUnit', 'Espresso', 'Mockito', 'Unit Testing', 'Instrumented Tests'],
+    skills: ['Unit Testing', 'UI Testing', 'JUnit', 'Espresso', 'Mockito'],
   },
 ];
 ---
@@ -42,7 +42,7 @@ const skillCategories = [
 <section class="skills section" id="skills">
   <div class="container">
     <header class="section-header reveal">
-      <p class="section-num">01 / Skills</p>
+      <p class="section-num">03 / Skills</p>
       <h2 class="section-title">What I Do</h2>
       <div class="divider"></div>
       <p class="section-subtitle">Technologies and tools I work with</p>
@@ -90,7 +90,7 @@ const skillCategories = [
     width: 44px;
     height: 44px;
     border-radius: var(--radius-sm);
-    background: rgba(108, 99, 255, 0.1);
+    background: var(--accent-soft);
     color: var(--color-primary);
     display: flex;
     align-items: center;

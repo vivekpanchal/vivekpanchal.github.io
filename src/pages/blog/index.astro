@@ -50,8 +50,8 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
                 {Math.ceil((post.body?.split(' ').length ?? 0) / 200)} min read
               </span>
             </div>
-            <h2 class="post-title">
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            <h2 class="post-title" transition:name={`post-title-${post.id}`}>
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
             </h2>
             <p class="post-desc">{post.data.description}</p>
             <ul class="post-tags">
@@ -64,13 +64,6 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
   </div>
 </Layout>
 
-<!-- Font Awesome -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
 
 <style>
   .blog-index {
@@ -129,10 +122,11 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
   }
 
   .tag-btn:hover,
+  /* Same treatment as the project filter chips; white on the green accent failed AA */
   .tag-btn.active {
-    background: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
   }
 
   .posts-list {
@@ -195,18 +189,21 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags))].sort();
 </style>
 
 <script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
-  const articles = document.querySelectorAll<HTMLElement>('.post-item');
+  // astro:page-load also fires on client-side navigations (ViewTransitions), where module scripts don't re-run.
+  document.addEventListener('astro:page-load', () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.tag-btn');
+    const articles = document.querySelectorAll<HTMLElement>('.post-item');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-      const tag = btn.dataset.tag ?? 'all';
-      articles.forEach(article => {
-        const tags = article.dataset.tags?.split(',') ?? [];
-        article.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+        const tag = btn.dataset.tag ?? 'all';
+        articles.forEach(article => {
+          const tags = article.dataset.tags?.split(',') ?? [];
+          article.classList.toggle('hidden', tag !== 'all' && !tags.includes(tag));
+        });
       });
     });
   });

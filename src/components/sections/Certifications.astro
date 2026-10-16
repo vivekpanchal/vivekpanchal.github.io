@@ -1,6 +1,24 @@
 ---
 const certs = [
   {
+    title: 'Google Certified Android Developer',
+    issuer: 'Google',
+    year: '2020',
+    description: 'Google’s Associate Android Developer certification, earned through a hands-on coding exam.',
+    icon: 'fab fa-google',
+    color: '#4285F4',
+    link: '#',
+  },
+  {
+    title: 'Jetpack Compose Crash Course',
+    issuer: 'Udemy',
+    year: '2023',
+    description: 'Building declarative Android UI with Jetpack Compose.',
+    icon: 'fas fa-layer-group',
+    color: '#a435f0',
+    link: '#',
+  },
+  {
     title: 'Google India Challenge Scholarship',
     issuer: 'Google / Udacity',
     year: '2018',
@@ -54,7 +72,7 @@ const certs = [
             <p class="cert-desc">{cert.description}</p>
             {cert.link !== '#' && (
               <a href={cert.link} target="_blank" rel="noopener noreferrer" class="cert-link">
-                View credential <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                View credential<span class="sr-only">: {cert.title}</span> <i class="fas fa-arrow-right" aria-hidden="true"></i>
               </a>
             )}
           </div>
@@ -67,7 +85,7 @@ const certs = [
 <style>
   .certs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
   }
 
@@ -110,7 +128,7 @@ const certs = [
   .cert-issuer {
     font-size: 0.8rem;
     font-weight: 600;
-    color: var(--cert-color, var(--color-primary));
+    color: var(--fg-2);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -137,7 +155,7 @@ const certs = [
   .cert-link {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--cert-color, var(--color-primary));
+    color: var(--accent);
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
