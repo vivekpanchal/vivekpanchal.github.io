@@ -1,9 +1,16 @@
 ---
+const RESUME_ID = '1LRgtobUcutRahsjbtUsRk1HcSNrNTEJn';
+const resume = {
+  view: `https://drive.google.com/file/d/${RESUME_ID}/view?usp=sharing`,
+  download: `https://drive.google.com/uc?export=download&id=${RESUME_ID}`,
+};
+
 const contacts = [
   { icon: 'fas fa-envelope', label: 'Email', value: 'vivekpanchal64@gmail.com', href: 'mailto:vivekpanchal64@gmail.com' },
   { icon: 'fab fa-linkedin-in', label: 'LinkedIn', value: 'linkedin.com/in/vivekpanchal-developer', href: 'https://linkedin.com/in/vivekpanchal-developer' },
   { icon: 'fab fa-github', label: 'GitHub', value: 'github.com/vivekpanchal', href: 'https://github.com/vivekpanchal' },
-  { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'New Delhi, India', href: null },
+  { icon: 'fas fa-file-pdf', label: 'Resume', value: 'View resume (PDF)', href: resume.view },
+  { icon: 'fas fa-map-marker-alt', label: 'Location', value: 'Delhi, India', href: null },
 ];
 ---
 
@@ -24,9 +31,16 @@ const contacts = [
           a role you think I'd be a great fit for, or just want to say hello —
           my inbox is always open.
         </p>
-        <a href="mailto:vivekpanchal64@gmail.com" class="btn btn-primary">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i> Say Hello
-        </a>
+        <div class="contact-actions">
+          <a href="mailto:vivekpanchal64@gmail.com" class="btn btn-primary">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Say Hello
+          </a>
+          <a href={resume.download} class="btn btn-secondary" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Download resume
+            <span class="sr-only">(PDF)</span>
+          </a>
+        </div>
       </div>
 
       <ul class="contact-cards" aria-label="Contact information">
@@ -55,6 +69,12 @@ const contacts = [
 </section>
 
 <style>
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
   .contact-inner {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
